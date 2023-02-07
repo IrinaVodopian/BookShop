@@ -1,12 +1,14 @@
-package com.bookshop.contoller;
+package com.bookshop.controller;
 
 import com.bookshop.model.Product;
 import com.bookshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Configuration
 @RestController
 @RequestMapping("/product")
 public class ProductController {

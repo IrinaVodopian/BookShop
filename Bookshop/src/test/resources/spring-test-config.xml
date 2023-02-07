@@ -8,6 +8,8 @@
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd
 	">
 
-    <context:component-scan base-package="com.example.shop.Bookshop.test" />
+<!--    <context:component-scan base-package="com.example.shop.Bookshop.test" />-->
 
+    <bean id="productController" class="com/bookshop/controller/ProductController">
+    </bean>
 </beans>

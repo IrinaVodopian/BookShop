@@ -1,4 +1,4 @@
-package com.bookshop.contoller;
+package com.bookshop.controller;
 
 import com.bookshop.model.Booking;
 import com.bookshop.repository.BookingRepository;
