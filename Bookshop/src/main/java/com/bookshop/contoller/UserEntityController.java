@@ -22,7 +22,6 @@ public class UserEntityController {
 		return userRepository.save(user);
 	}
 
-	//might be better to change the logic of providing name
 	@PutMapping("/{id}")
 	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable String userId) {
 		return userRepository.save(user);

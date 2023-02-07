@@ -1,4 +1,4 @@
-package com.bookshop;
+package com.test;
 
 import com.bookshop.contoller.ProductController;
 import com.bookshop.model.Product;
