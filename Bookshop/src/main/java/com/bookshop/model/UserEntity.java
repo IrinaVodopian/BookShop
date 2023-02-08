@@ -19,7 +19,6 @@ public class UserEntity {
 	@Column(name = "userName")
   private String userName;
 
-	//@Enumerated(EnumType.ORDINAL)
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", referencedColumnName = "roleId")
 	private Role role;

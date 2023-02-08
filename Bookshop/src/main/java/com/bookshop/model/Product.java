@@ -9,9 +9,7 @@ import javax.persistence.*;
 
 
 @Data
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "Product")
 @Entity
 public class Product {

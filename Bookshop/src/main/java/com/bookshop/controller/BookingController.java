@@ -1,8 +1,7 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.Booking;
-import com.bookshop.repository.BookingRepository;
-import com.bookshop.service.ProductService;
+import com.bookshop.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,28 +12,26 @@ import java.util.Optional;
 public class BookingController {
 
 	@Autowired
-	BookingRepository bookingRepository;
-	@Autowired
-	ProductService productService;
+	BookingService bookingService;
 
-	@GetMapping("/{id}")
-	Optional<Booking> getBooking(@PathVariable Integer bookingId) {
-		return bookingRepository.findById(bookingId);
+	@GetMapping("/{bookingId}")
+	Optional<Booking> getBookingById(@PathVariable Integer bookingId) {
+		return bookingService.getBookingById(bookingId);
 	}
 
 	@PostMapping
 	Booking createBooking(@RequestBody Booking booking) {
-		return bookingRepository.save(booking);
+		return bookingService.createBooking(booking);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{bookingId}")
 	Booking editBooking(@RequestBody Booking booking, @PathVariable Integer bookingId) {
-		return bookingRepository.save(booking);
+		return bookingService.editBooking(booking, bookingId);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{bookingId}")
 	void cancelBooking(@PathVariable Integer bookingId) {
-		bookingRepository.deleteById(bookingId);
+		bookingService.cancelBooking(bookingId);
 	}
 
 

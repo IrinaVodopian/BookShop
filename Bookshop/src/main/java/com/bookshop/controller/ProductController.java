@@ -1,12 +1,13 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.Product;
-import com.bookshop.repository.ProductRepository;
+import com.bookshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 @RestController
@@ -14,28 +15,32 @@ import java.util.List;
 public class ProductController {
 
 	@Autowired
-	public ProductRepository productRepository;
+	public ProductService productService;
 
 	@GetMapping
 	public List<Product> getListOfProduct() {
-		return productRepository.findAll();
+		return productService.getAllProducts();
+	}
+
+	//add to schema
+	@GetMapping("/{productId}")
+	public Product getProductById(@PathVariable Integer productId) {
+		return productService.getProductById(productId);
 	}
 
 	@PostMapping
 	public Product addProduct(@RequestBody Product product) {
-		return productRepository.save(product);
+		return productService.saveProduct(product);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{productId}")
 	public Product editProduct(@RequestBody Product product, @PathVariable Integer productId) {
-		return productRepository.save(product);
+		return productService.editProduct(product, productId);
 	}
 
-	@DeleteMapping("/{id}")
-	void deleteProduct(@PathVariable Integer productId) {
-		productRepository.deleteById(productId);
+	@DeleteMapping("/{productId}")
+	void deleteProductById(@PathVariable Integer productId) {
+		productService.deleteProductById(productId);
 	}
-
-
 
 }

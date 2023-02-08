@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -35,7 +36,6 @@ public class Booking {
 	@Column(name = "time")
 	private Time time;
 
-//	@Enumerated(EnumType.ORDINAL)
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "status_id", referencedColumnName = "statusId")
 	private BookingStatus status;

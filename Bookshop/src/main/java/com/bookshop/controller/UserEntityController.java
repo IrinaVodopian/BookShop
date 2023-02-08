@@ -1,35 +1,37 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.UserEntity;
-import com.bookshop.repository.UserRepository;
+import com.bookshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
 public class UserEntityController {
 
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 
-	@GetMapping
-	UserEntity getUser(@PathVariable String userName) {
-		return userRepository.findByUserName(userName);
+	@GetMapping("/{userId}")
+	Optional<UserEntity> getUserById(@PathVariable Integer userId) {
+		return userService.getUserById(userId);
 	}
 
 	@PostMapping
 	UserEntity createNewUser(@RequestBody UserEntity user) {
-		return userRepository.save(user);
+		return userService.createNewUser(user);
 	}
 
-	@PutMapping("/{id}")
-	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable String userId) {
-		return userRepository.save(user);
+	@PutMapping("/{userId}")
+	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable Integer userId) {
+		return userService.editUserProfile(user, userId);
 	}
 
-	@DeleteMapping("/{id}")
-	void deleteUser(@PathVariable String userId) {
-		userRepository.deleteById(userId);
+	@DeleteMapping("/{userId}")
+	void deleteUser(@PathVariable Integer userId) {
+		userService.deleteUser(userId);
 	}
 
 }

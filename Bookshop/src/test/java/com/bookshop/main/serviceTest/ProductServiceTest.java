@@ -4,49 +4,65 @@ import com.bookshop.model.Product;
 import com.bookshop.repository.ProductRepository;
 import com.bookshop.service.ProductService;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @Transactional
 public class ProductServiceTest {
 
 	@Autowired
-	private ProductService productService;
+	ProductService productService;
 
 	@Autowired
-	private ProductRepository productRepository;
+	ProductRepository productRepository;
 
-	@Autowired
-	private Product product;
+	Product product1 = new Product(1, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	Product product2 = new Product(2, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
 
 	@Test
-	void getAllProducts_listIsReturned(){
-		Product product1 = new Product(null, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-		Product product2 = new Product(null, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-
-		productRepository.saveAll(Arrays.asList(product1,product2));
-		List<Product> productList = productService.getAllProducts();
-
+	public void getAllProducts_success() {
+		List<Product> products = Arrays.asList(product1, product2);
+		when(productRepository.findAll()).thenReturn(products);
+		List<Product> returnedProducts = productService.getAllProducts();
+		Assertions.assertEquals(2, returnedProducts.size());
+		verify(productRepository, times(1)).findAll();
 	}
 
-//	@Autowired
-//	private MockMvc mvc;
-//
-//	@Test
-//	public void getProductsTest() throws Exception {
-//		mvc.perform(MockMvcRequestBuilders.get("/product").accept(MediaType.APPLICATION_JSON))
-//						.andExpect(status().isOk());
-////						.andExpect((ResultMatcher) jsonPath("$", hasSize(2)));
-//	}
+	// check
+	@Test
+	public void getProductById_success() {
+		Mockito.when(productRepository.findById(1)).thenReturn(Optional.ofNullable(product1));
+		Product product = productService.getProductById(1);
+		assertTrue(product.getProductId() == 1);
+		verify(productRepository, times(1)).findById(1);
+	}
+
+	@Test
+	public void saveProduct_success() {
+		Mockito.when(productRepository.save(product1)).thenReturn(product1);
+		Product returnedProduct = productService.saveProduct(product1);
+		Assertions.assertNotNull(returnedProduct);
+		verify(productRepository, times(1)).save(product1);
+	}
+
+	// check
+	@Test
+	public void deleteProductById_success() {
+		doNothing().when(productRepository).deleteById(1);
+		productService.deleteProductById(1);
+		verify(productRepository, times(1)).deleteById(1);
+	}
 }
