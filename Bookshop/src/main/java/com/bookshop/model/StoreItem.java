@@ -1,9 +1,11 @@
 package com.bookshop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
 @Data
 @Table(name = "StoreItem")
 @Entity

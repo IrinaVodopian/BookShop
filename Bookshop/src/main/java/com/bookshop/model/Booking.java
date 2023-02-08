@@ -1,12 +1,14 @@
 package com.bookshop.model;
 
 import com.bookshop.enums.BookingStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
+@AllArgsConstructor
 @Data
 @Table(name = "Booking")
 @Entity

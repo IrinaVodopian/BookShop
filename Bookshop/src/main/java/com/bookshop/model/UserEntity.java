@@ -1,10 +1,11 @@
 package com.bookshop.model;
 
 import com.bookshop.enums.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
-
+@AllArgsConstructor
 @Data
 @Table(name = "UserEntity")
 @Entity
