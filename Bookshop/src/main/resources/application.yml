@@ -12,14 +12,5 @@ spring:
             update
         hbm2ddl:
             auto: create
-app:
-    name: BookShop application
-    api:
-      title: BookShop  APIs
-      version: 1.0.0
-      description: BookShop  APIs description
-      base-package: com.bookshop
-      swagger:
-        enable: true
 
 
