@@ -5,9 +5,11 @@ import com.bookshop.controller.ProductController;
 import com.bookshop.controller.UserEntityController;
 import com.bookshop.repository.BookingRepository;
 import com.bookshop.repository.ProductRepository;
+import com.bookshop.repository.StoreItemRepository;
 import com.bookshop.repository.UserRepository;
 import com.bookshop.service.BookingService;
 import com.bookshop.service.ProductService;
+import com.bookshop.service.StoreItemService;
 import com.bookshop.service.UserService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.*;
@@ -37,6 +39,12 @@ public class TestConfiguration {
 	}
 
 	@Bean
+	@Primary
+	public StoreItemRepository storeItemRepository() {
+		return Mockito.mock(StoreItemRepository.class);
+	}
+
+	@Bean
 	public ProductService productService() {
 		return new ProductService();
 	}
@@ -44,6 +52,11 @@ public class TestConfiguration {
 	@Bean
 	public BookingService bookingService() {
 		return new BookingService();
+	}
+
+	@Bean
+	public StoreItemService storeItemService() {
+		return new StoreItemService();
 	}
 
 	@Bean

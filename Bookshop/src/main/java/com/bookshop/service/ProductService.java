@@ -17,7 +17,6 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 
-	//check api add in swagger an in controller
 	public Product getProductById(Integer id) {
 		return productRepository.findById(id).orElse(null);
 	}

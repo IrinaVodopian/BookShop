@@ -34,11 +34,11 @@ paths:
         - manager
       description: |
         Post a new book
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/Product'
       responses:
         '200':
           description: request has succseed
@@ -57,12 +57,12 @@ paths:
       description: |
         Edit a book info
         Book id should be provided in the path
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/Product'
-      parameters: 
+              $ref: '#/components/schemas/Product'
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
@@ -75,7 +75,75 @@ paths:
       description: |
         Delete a book
         Book id should be provided in the path
-      parameters: 
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+  /storeItem:
+    get:
+      tags:
+        - manager
+      description: |
+        Get a storeItem
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StoreItem'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - manager
+      description: |
+        Post a new storeItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreItem'
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/StoreItem'
+        '400':
+          description: bad input parameter
+  /storeItem/{id}:
+    put:
+      tags:
+        - manager
+      description: |
+        Edit a storeItem info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreItem'
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+    delete:
+      tags:
+        - manager
+      description: |
+        Delete a storeItem
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
@@ -89,11 +157,11 @@ paths:
         - manager
       description: |
         Create booking
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/Booking'
+              $ref: '#/components/schemas/Booking'
       responses:
         '200':
           description: request has succseed
@@ -105,7 +173,7 @@ paths:
                   $ref: '#/components/schemas/Booking'
         '400':
           description: bad input parameter
-  /booking/{id}:  
+  /booking/{id}:
     put:
       tags:
         - customer
@@ -113,13 +181,13 @@ paths:
       description: |
         Edit
         Change bookings
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/id"
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/Booking'
+              $ref: '#/components/schemas/Booking'
       responses:
         '200':
           description: request has succseed
@@ -133,7 +201,7 @@ paths:
         View bookings
         Get bookings for a chosen person.
         Customer can see only bookings made on his name.
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
@@ -154,25 +222,25 @@ paths:
         Cancel bookings
         Booking id should be provided
         Customer can cancel only bookings made on his/her name
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
           description: request has succseed
         '400':
           description: bad input parameter
-  /user:        
+  /user:
     post:
       tags:
         - customer
         - administrator
       description: |
         Create a new user
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/UserEntity'
+              $ref: '#/components/schemas/UserEntity'
       responses:
         '200':
           description: request has succseed
@@ -192,8 +260,8 @@ paths:
       description: |
         View user's profile
         Customer can view only there own profile
-      parameters: 
-         - $ref: "#/components/parameters/id"
+      parameters:
+        - $ref: "#/components/parameters/id"
       responses:
         '200':
           description: request has succseed
@@ -212,7 +280,7 @@ paths:
       description: |
         Edit user's profile
         User can edit only his/hers own profile
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
@@ -231,7 +299,7 @@ paths:
         - administrator
       description: |
         Delete a user
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
@@ -259,23 +327,23 @@ components:
           type: string
           example: Vasiliy Ivanov
         role:
-          type: object 
+          type: object
           example: $ref:'#/components/schemas/Role' 
         email:
           type: string
-          example: randomeEmail@gmail.com 
+          example: randomeEmail@gmail.com
         phone:
           type: string
           example: 888-777-666
         address:
           type: string
-          example: Rainbow street 48 
+          example: Rainbow street 48
         login:
-           type: string
-           example: login 
+          type: string
+          example: login
         password:
-           type: string
-           example: password
+          type: string
+          example: password
     Role:
       type: object
       properties:
@@ -376,23 +444,23 @@ components:
         quantity:
           type: integer
           example: 1
-  parameters: 
+  parameters:
     userName:
-          in: path
-          name: name
-          description: user's name
-          required: true
-          schema:
-            type: string
-            example: Vasiliy Ivanov
+      in: path
+      name: name
+      description: user's name
+      required: true
+      schema:
+        type: string
+        example: Vasiliy Ivanov
     id:
-          in: path
-          name: id
-          description: id
-          required: true
-          schema:
-            type: integer
-            example: 1
+      in: path
+      name: id
+      description: id
+      required: true
+      schema:
+        type: integer
+        example: 1
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking

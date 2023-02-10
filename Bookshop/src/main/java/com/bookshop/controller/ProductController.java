@@ -3,13 +3,10 @@ package com.bookshop.controller;
 import com.bookshop.model.Product;
 import com.bookshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
-@Configuration
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -22,7 +19,6 @@ public class ProductController {
 		return productService.getAllProducts();
 	}
 
-	//add to schema
 	@GetMapping("/{productId}")
 	public Product getProductById(@PathVariable Integer productId) {
 		return productService.getProductById(productId);
