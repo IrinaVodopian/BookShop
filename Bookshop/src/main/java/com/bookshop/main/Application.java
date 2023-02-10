@@ -1,12 +1,11 @@
 package com.bookshop.main;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
-import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
 
 @SpringBootApplication
-@Import(SpringDataRestConfiguration.class)
+@OpenAPIDefinition
 public class Application {
 
 	public static void main(String[] args) {

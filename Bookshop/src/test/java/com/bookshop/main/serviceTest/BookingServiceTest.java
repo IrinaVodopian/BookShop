@@ -10,7 +10,6 @@ import com.bookshop.service.BookingService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -52,7 +51,6 @@ public class BookingServiceTest {
 		verify(bookingRepository, times(1)).save(booking);
 	}
 
-	// check
 	@Test
 	public void deleteProductById_success() {
 		doNothing().when(bookingRepository).deleteById(1);

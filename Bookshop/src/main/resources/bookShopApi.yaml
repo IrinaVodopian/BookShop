@@ -1,0 +1,399 @@
+openapi: 3.0.0
+info:
+  description: APIs for a bookshop (study project)
+  version: "1.0.0"
+  title: BookShop API
+tags:
+  - name: administrator
+    description: Secured Admin-only calls
+  - name: manager
+    description: Secured Manager-only calls
+  - name: customer
+    description: Operations available to regular customers
+paths:
+  /product:
+    get:
+      tags:
+        - customer
+        - manager
+      description: |
+        Get a list of abailable books for booking
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - manager
+      description: |
+        Post a new book
+      requestBody: 
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: bad input parameter
+  /product/{id}:
+    put:
+      tags:
+        - manager
+      description: |
+        Edit a book info
+        Book id should be provided in the path
+      requestBody: 
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Product'
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+    delete:
+      tags:
+        - manager
+      description: |
+        Delete a book
+        Book id should be provided in the path
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+  /booking:
+    post:
+      tags:
+        - customer
+        - manager
+      description: |
+        Create booking
+      requestBody: 
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Booking'
+        '400':
+          description: bad input parameter
+  /booking/{id}:  
+    put:
+      tags:
+        - customer
+        - manager
+      description: |
+        Edit
+        Change bookings
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      requestBody: 
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+    get:
+      tags:
+        - customer
+        - manager
+      description: |
+        View bookings
+        Get bookings for a chosen person.
+        Customer can see only bookings made on his name.
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+        '400':
+          description: bad input parameter
+    delete:
+      tags:
+        - customer
+        - manager
+      description: |
+        Cancel bookings
+        Booking id should be provided
+        Customer can cancel only bookings made on his/her name
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+  /user:        
+    post:
+      tags:
+        - customer
+        - administrator
+      description: |
+        Create a new user
+      requestBody: 
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/UserEntity'
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/UserEntity'
+        '400':
+          description: bad input parameter
+  /user/{id}:
+    get:
+      tags:
+        - customer
+        - administrator
+      description: |
+        View user's profile
+        Customer can view only there own profile
+      parameters: 
+         - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/UserEntity'
+        '400':
+          description: bad input parameter
+    put:
+      tags:
+        - customer
+        - administrator
+      description: |
+        Edit user's profile
+        User can edit only his/hers own profile
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/UserEntity'
+        '400':
+          description: bad input parameter
+    delete:
+      tags:
+        - customer
+        - administrator
+      description: |
+        Delete a user
+      parameters: 
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: request has succseed
+        '400':
+          description: bad input parameter
+
+components:
+  schemas:
+    UserEntity:
+      type: object
+      required:
+        - name
+        - role
+        - email
+        - phone
+        - address
+        - login
+        - password
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Vasiliy Ivanov
+        role:
+          type: object 
+          example: $ref:'#/components/schemas/Role' 
+        email:
+          type: string
+          example: randomeEmail@gmail.com 
+        phone:
+          type: string
+          example: 888-777-666
+        address:
+          type: string
+          example: Rainbow street 48 
+        login:
+           type: string
+           example: login 
+        password:
+           type: string
+           example: password
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        role:
+          type: string
+          example: ADMIN
+    BookingStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          example: CANCELED
+    Product:
+      type: object
+      required:
+        - name
+        - description
+        - author
+        - price
+        - imagePath
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Fairy Tales
+        description:
+          type: string
+          example: A good book
+        author:
+          type: string
+          example: R.Richard
+        price:
+          type: number
+          example: 10.0
+        imagePath:
+          type: string
+          example: "http://picturehere.eu"
+    StoreItem:
+      type: object
+      required:
+        - product
+        - availableQty
+        - bookedQty
+        - soldQty
+      properties:
+        id:
+          type: integer
+          example: 1
+        availableQty:
+          type: integer
+          example: 10
+        bookedQty:
+          type: integer
+          example: 3
+        soldQty:
+          type: integer
+          example: 2
+    Booking:
+      type: object
+      required:
+        - product
+        - user
+        - deliveryAddress
+        - date
+        - time
+        - status
+        - quantity
+      properties:
+        id:
+          type: integer
+          example: 1
+        product:
+          type: object
+          example: $ref:'#/components/schemas/Product'
+        user:
+          type: object
+          example: '#/components/schemas/User'
+        deliveryAddress:
+          type: string
+          example: Parking street 28
+        date:
+          type: object
+          example: 2017/11/06
+        time:
+          type: object
+          example: 12:11:58
+        status:
+          type: object
+          example: '#/components/schemas/BookingStatus'
+        quantity:
+          type: integer
+          example: 1
+  parameters: 
+    userName:
+          in: path
+          name: name
+          description: user's name
+          required: true
+          schema:
+            type: string
+            example: Vasiliy Ivanov
+    id:
+          in: path
+          name: id
+          description: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/IRINAVODDAN/ooo/1.0.0

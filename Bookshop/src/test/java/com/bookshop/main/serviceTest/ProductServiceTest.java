@@ -41,7 +41,6 @@ public class ProductServiceTest {
 		verify(productRepository, times(1)).findAll();
 	}
 
-	// check
 	@Test
 	public void getProductById_success() {
 		Mockito.when(productRepository.findById(1)).thenReturn(Optional.ofNullable(product1));
@@ -58,7 +57,6 @@ public class ProductServiceTest {
 		verify(productRepository, times(1)).save(product1);
 	}
 
-	// check
 	@Test
 	public void deleteProductById_success() {
 		doNothing().when(productRepository).deleteById(1);

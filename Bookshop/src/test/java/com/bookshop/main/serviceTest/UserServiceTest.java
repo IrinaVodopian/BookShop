@@ -44,7 +44,6 @@ public class UserServiceTest {
 		verify(userRepository, times(1)).save(user);
 	}
 
-	// check
 	@Test
 	public void deleteUserById_success() {
 		doNothing().when(userRepository).deleteById(1);
