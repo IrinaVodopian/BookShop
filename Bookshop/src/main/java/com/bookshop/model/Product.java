@@ -1,22 +1,21 @@
 package com.bookshop.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-
-@Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Table(name = "Product")
 @Entity
 public class Product {
 	@Id
 	@Column(name = "productId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer productId;
+  private Long productId;
 
 	@Column(name = "productName")
   private String productName;

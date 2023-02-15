@@ -1,6 +1,6 @@
 package com.bookshop.main.webTest;
 
-import com.bookshop.enums.Role;
+import com.bookshop.model.enums.Role;
 import com.bookshop.model.UserEntity;
 import com.bookshop.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,11 +34,11 @@ public class UserWebTest {
 
 	@Autowired
 	UserRepository userRepository;
- 	UserEntity user = new UserEntity(1, "Piotr", Role.ADMIN, "gmail", "888", "street", "login", "password");
+ 	UserEntity user = new UserEntity(1L, "Piotr", Role.ADMIN, "gmail", "888", "street", "login", "password");
 
 	@Test
 	public void getUserById_success() throws Exception {
-		when(userRepository.findById(1)).thenReturn(Optional.ofNullable(user));
+		when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
 		mockMvc.perform(MockMvcRequestBuilders
 										.get("/user/{userId}", "1")
 										.contentType(MediaType.APPLICATION_JSON))
@@ -62,7 +62,7 @@ public class UserWebTest {
 
 	@Test
 	public void deleteUser_success() throws Exception {
-		doNothing().when(userRepository).deleteById(1);
+		doNothing().when(userRepository).deleteById(1L);
 		mockMvc.perform(MockMvcRequestBuilders
 										.delete("/user/{userId}", "1")
 										.contentType(MediaType.APPLICATION_JSON)

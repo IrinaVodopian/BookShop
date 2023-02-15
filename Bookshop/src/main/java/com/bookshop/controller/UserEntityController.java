@@ -15,7 +15,7 @@ public class UserEntityController {
 	UserService userService;
 
 	@GetMapping("/{userId}")
-	Optional<UserEntity> getUserById(@PathVariable Integer userId) {
+	Optional<UserEntity> getUserById(@PathVariable Long userId) {
 		return userService.getUserById(userId);
 	}
 
@@ -25,12 +25,12 @@ public class UserEntityController {
 	}
 
 	@PutMapping("/{userId}")
-	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable Integer userId) {
+	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable Long userId) {
 		return userService.editUserProfile(user, userId);
 	}
 
 	@DeleteMapping("/{userId}")
-	void deleteUser(@PathVariable Integer userId) {
+	void deleteUser(@PathVariable Long userId) {
 		userService.deleteUser(userId);
 	}
 

@@ -1,6 +1,9 @@
-package com.bookshop.enums;
+package com.bookshop.model.enums;
 
-import javax.persistence.*;
+import org.apache.catalina.User;
+
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Table(name = "Role")
 @Entity
@@ -12,5 +15,8 @@ public enum Role {
 	@Id
 	@Column(name = "roleId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer roleId;
+	private Long roleId;
+
+//	@OneToMany(mappedBy="role")
+//	private Set<User> users;
 }

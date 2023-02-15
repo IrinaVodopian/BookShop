@@ -29,8 +29,8 @@ public class ProductServiceTest {
 	@Autowired
 	ProductRepository productRepository;
 
-	Product product1 = new Product(1, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-	Product product2 = new Product(2, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	Product product1 = new Product(1L, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	Product product2 = new Product(2L, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
 
 	@Test
 	public void getAllProducts_success() {
@@ -43,10 +43,10 @@ public class ProductServiceTest {
 
 	@Test
 	public void getProductById_success() {
-		Mockito.when(productRepository.findById(1)).thenReturn(Optional.ofNullable(product1));
-		Product product = productService.getProductById(1);
+		Mockito.when(productRepository.findById(1L)).thenReturn(Optional.ofNullable(product1));
+		Product product = productService.getProductById(1L);
 		assertTrue(product.getProductId() == 1);
-		verify(productRepository, times(1)).findById(1);
+		verify(productRepository, times(1)).findById(1L);
 	}
 
 	@Test
@@ -59,8 +59,8 @@ public class ProductServiceTest {
 
 	@Test
 	public void deleteProductById_success() {
-		doNothing().when(productRepository).deleteById(1);
-		productService.deleteProductById(1);
-		verify(productRepository, times(1)).deleteById(1);
+		doNothing().when(productRepository).deleteById(1L);
+		productService.deleteProductById(1L);
+		verify(productRepository, times(1)).deleteById(1L);
 	}
 }

@@ -42,8 +42,8 @@ public class ProductWebTest {
 	@Autowired
 	ProductRepository productRepository;
 
-	Product product1 = new Product(1, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-	Product product2 = new Product(2, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	Product product1 = new Product(1L, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	Product product2 = new Product(2L, "Tale2", "goodBook", "H.H.Peterson", 10.0F, "http://path");
 
 	@Test
 	public void getAllProducts_success() throws Exception {
@@ -59,7 +59,7 @@ public class ProductWebTest {
 
 	@Test
 	public void getProductById_success() throws Exception {
-		when(productRepository.findById(1)).thenReturn(Optional.ofNullable(product1));
+		when(productRepository.findById(1L)).thenReturn(Optional.ofNullable(product1));
 		mockMvc.perform(MockMvcRequestBuilders
 										.get("/product/{productId}", "1")
 										.contentType(MediaType.APPLICATION_JSON))
@@ -83,7 +83,7 @@ public class ProductWebTest {
 
 	@Test
 	public void deleteProductById_success() throws Exception {
-		doNothing().when(productRepository).deleteById(1);
+		doNothing().when(productRepository).deleteById(1L);
 		mockMvc.perform(MockMvcRequestBuilders
 										.delete("/product/{productId}", "1")
 										.contentType(MediaType.APPLICATION_JSON)

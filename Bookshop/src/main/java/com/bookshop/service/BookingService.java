@@ -14,7 +14,7 @@ public class BookingService {
 	@Autowired
 	BookingRepository bookingRepository;
 
-	public Optional<Booking> getBookingById(Integer bookingId) {
+	public Optional<Booking> getBookingById(Long bookingId) {
 		return bookingRepository.findById(bookingId);
 	}
 
@@ -22,14 +22,12 @@ public class BookingService {
 		return bookingRepository.save(booking);
 	}
 
-	//change, set correct id?
-	public Booking editBooking(@RequestBody Booking booking, @PathVariable Integer bookingId) {
+	public Booking editBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
 		bookingRepository.deleteById(bookingId);
-		booking.setBookingId(bookingId);
 		return bookingRepository.save(booking);
 	}
 
-	public void cancelBooking(@PathVariable Integer bookingId) {
+	public void cancelBooking(@PathVariable Long bookingId) {
 		bookingRepository.deleteById(bookingId);
 	}
 }

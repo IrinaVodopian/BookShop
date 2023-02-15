@@ -14,7 +14,7 @@ public class StoreItemController {
 	public StoreItemService storeItemService;
 
 	@GetMapping("/{storeItemId}")
-	public StoreItem getStoreItemById(@PathVariable Integer storeItemId) {
+	public StoreItem getStoreItemById(@PathVariable Long storeItemId) {
 		return storeItemService.getStoreItemById(storeItemId);
 	}
 
@@ -24,12 +24,12 @@ public class StoreItemController {
 	}
 
 	@PutMapping("/{storeItemId}")
-	public StoreItem editStoreItem(@RequestBody StoreItem storeItem, @PathVariable Integer storeItemId) {
+	public StoreItem editStoreItem(@RequestBody StoreItem storeItem, @PathVariable Long storeItemId) {
 		return storeItemService.editStoreItem(storeItem, storeItemId);
 	}
 
 	@DeleteMapping("/{storeItemId}")
-	void deleteStoreItemById(@PathVariable Integer storeItemId) {
+	void deleteStoreItemById(@PathVariable Long storeItemId) {
 		storeItemService.deleteStoreItemById(storeItemId);
 	}
 

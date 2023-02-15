@@ -207,8 +207,6 @@ w
 G.idea/sonarlint/issuestore/7/5/75a5efe07bfd556010ee7fac1ea79d75c68724a1,d\6\d61741227dd79da6a9d844a7aa19f443742037d1
 w
 G.idea/sonarlint/issuestore/0/d/0dde6d2c612b6a1316865624e6cfe2f1e488293a,7\b\7b7e49fc128f4ca41e535b70457f92f368bc7b09
-o
-?Bookshop/src/main/java/com/bookshop/service/BookingService.java,7\a\7ac22c9f46030857204256d40c7f6199a13aa047
 ƒ
 S.idea/libraries/Maven__org_springdoc_springdoc_openapi_starter_webmvc_api_2_0_2.xml,a\4\a4c025dce48fd194cfcbc9717baf92019b104639
 ‚
@@ -237,10 +235,6 @@ p
 @.idea/libraries/Maven__org_webjars_webjars_locator_core_0_52.xml,e\9\e9db250b96f9274d2814651e5275cefb7dbed75b
 r
 B.idea/libraries/Maven__io_github_classgraph_classgraph_4_8_149.xml,d\6\d6b5ebb971cfa8f7b20881553957ba4bfd92b387
-f
-6Bookshop/src/main/java/com/bookshop/model/Booking.java,d\e\de027282d73c16d20be38d038f1127a9e49d52a7
-t
-DBookshop/src/test/java/com/bookshop/main/webTest/BookingWebTest.java,b\7\b71a147108420b3d536be2a18001e5fd8ea79dc9
 p
 @.idea/libraries/Maven__org_springframework_spring_core_6_0_4.xml,3\0\3059577b817e9fc3c834760ab17a855a0d426217
 w
@@ -455,3 +449,7 @@ w
 G.idea/sonarlint/issuestore/7/9/7979ef3c9c2bbd3b353ba464556f5d301e89f7b4,9\4\9466741dd56768b4921c47085ca819fa74b44e90
 w
 G.idea/sonarlint/issuestore/7/b/7b7e49fc128f4ca41e535b70457f92f368bc7b09,e\0\e0421a5e2d207f97908ace8ddcfe47afaf822e00
+n
+>Bookshop/src/test/java/com/bookshop/main/ApplicationTests.java,d\1\d134ee8d8d3dae05514b9daa389ebadd9bd7c80f
+o
+?Bookshop/src/test/java/com/bookshop/main/TestConfiguration.java,f\0\f0e0dc0d5da2f771782cbc86d271436bef5e5202

@@ -18,9 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Optional;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -38,13 +35,13 @@ public class StoreItemWebTest {
 	@Autowired
 	StoreItemRepository storeItemRepository;
 
-	Product product = new Product(1, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-	StoreItem storeItem = new StoreItem(1, product, 2, 1, 3);
+	Product product = new Product(1L, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	StoreItem storeItem = new StoreItem(1L, product, 2, 1, 3);
 
 
 	@Test
 	public void getStoreItemById_success() throws Exception {
-		when(storeItemRepository.findById(1)).thenReturn(Optional.ofNullable(storeItem));
+		when(storeItemRepository.findById(1L)).thenReturn(Optional.ofNullable(storeItem));
 		mockMvc.perform(MockMvcRequestBuilders
 										.get("/storeItem/{storeItemId}", "1")
 										.contentType(MediaType.APPLICATION_JSON))
@@ -68,7 +65,7 @@ public class StoreItemWebTest {
 
 	@Test
 	public void deleteStoreItemById_success() throws Exception {
-		doNothing().when(storeItemRepository).deleteById(1);
+		doNothing().when(storeItemRepository).deleteById(1L);
 		mockMvc.perform(MockMvcRequestBuilders
 										.delete("/storeItem/{storeItemId}", "1")
 										.contentType(MediaType.APPLICATION_JSON)

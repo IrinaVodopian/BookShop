@@ -3,9 +3,11 @@ package com.bookshop.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name = "StoreItem")
 @Entity
@@ -13,7 +15,7 @@ public class StoreItem {
 	@Id
 	@Column(name = "storeId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer storeId;
+  private Long storeId;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_id", referencedColumnName = "productId")

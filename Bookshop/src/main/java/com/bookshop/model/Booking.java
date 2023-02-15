@@ -1,11 +1,10 @@
 package com.bookshop.model;
 
-import com.bookshop.enums.BookingStatus;
+import com.bookshop.model.enums.BookingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.*;
-
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import java.sql.Time;
 import java.util.Date;
 
@@ -13,11 +12,12 @@ import java.util.Date;
 @Data
 @Table(name = "Booking")
 @Entity
+@NoArgsConstructor
 public class Booking {
 	@Id
 	@Column(name = "bookingId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer bookingId;
+  private Long bookingId;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_id", referencedColumnName = "productId")

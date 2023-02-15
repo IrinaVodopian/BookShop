@@ -15,7 +15,7 @@ public class BookingController {
 	BookingService bookingService;
 
 	@GetMapping("/{bookingId}")
-	Optional<Booking> getBookingById(@PathVariable Integer bookingId) {
+	Optional<Booking> getBookingById(@PathVariable Long bookingId) {
 		return bookingService.getBookingById(bookingId);
 	}
 
@@ -25,12 +25,12 @@ public class BookingController {
 	}
 
 	@PutMapping("/{bookingId}")
-	Booking editBooking(@RequestBody Booking booking, @PathVariable Integer bookingId) {
+	Booking editBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
 		return bookingService.editBooking(booking, bookingId);
 	}
 
 	@DeleteMapping("/{bookingId}")
-	void cancelBooking(@PathVariable Integer bookingId) {
+	void cancelBooking(@PathVariable Long bookingId) {
 		bookingService.cancelBooking(bookingId);
 	}
 

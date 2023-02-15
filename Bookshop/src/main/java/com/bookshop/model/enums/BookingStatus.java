@@ -1,6 +1,6 @@
-package com.bookshop.enums;
+package com.bookshop.model.enums;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 @Table(name = "BookingStatus")
@@ -16,5 +16,5 @@ public enum BookingStatus {
 	@Id
 	@Column(name = "statusId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer statusId;
+	private Long statusId;
 }

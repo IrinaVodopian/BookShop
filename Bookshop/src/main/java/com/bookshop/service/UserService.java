@@ -13,7 +13,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public Optional<UserEntity> getUserById(Integer id) {
+	public Optional<UserEntity> getUserById(Long id) {
 		return userRepository.findById(id);
 	}
 
@@ -21,12 +21,12 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public UserEntity editUserProfile(UserEntity user, Integer userId) {
+	public UserEntity editUserProfile(UserEntity user, Long userId) {
 		userRepository.deleteById(userId);
 		return userRepository.save(user);
 	}
 
-	public void deleteUser(Integer userId) {
+	public void deleteUser(Long userId) {
 		userRepository.deleteById(userId);
 	}
 }

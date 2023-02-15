@@ -2,7 +2,6 @@ package com.bookshop.main.serviceTest;
 
 import com.bookshop.model.Product;
 import com.bookshop.model.StoreItem;
-import com.bookshop.repository.ProductRepository;
 import com.bookshop.repository.StoreItemRepository;
 import com.bookshop.service.StoreItemService;
 import jakarta.transaction.Transactional;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
@@ -31,15 +28,15 @@ public class StoreItemServiceTest {
 	@Autowired
 	StoreItemRepository storeItemRepository;
 
-	Product product = new Product(1, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
-	StoreItem storeItem = new StoreItem(1, product, 2, 1, 3);
+	Product product = new Product(1L, "Tale1", "goodBook", "H.H.Peterson", 10.0F, "http://path");
+	StoreItem storeItem = new StoreItem(1L, product, 2, 1, 3);
 
 	@Test
 	public void getStoreItemById_success() {
-		Mockito.when(storeItemRepository.findById(1)).thenReturn(Optional.ofNullable(storeItem));
-		StoreItem storeItemReturned = storeItemService.getStoreItemById(1);
+		Mockito.when(storeItemRepository.findById(1L)).thenReturn(Optional.ofNullable(storeItem));
+		StoreItem storeItemReturned = storeItemService.getStoreItemById(1L);
 		assertTrue(storeItemReturned.getStoreId() == 1);
-		verify(storeItemRepository, times(1)).findById(1);
+		verify(storeItemRepository, times(1)).findById(1L);
 	}
 
 	@Test
@@ -52,8 +49,8 @@ public class StoreItemServiceTest {
 
 	@Test
 	public void deleteStoreItemById_success() {
-		doNothing().when(storeItemRepository).deleteById(1);
-		storeItemService.deleteStoreItemById(1);
-		verify(storeItemRepository, times(1)).deleteById(1);
+		doNothing().when(storeItemRepository).deleteById(1L);
+		storeItemService.deleteStoreItemById(1L);
+		verify(storeItemRepository, times(1)).deleteById(1L);
 	}
 }

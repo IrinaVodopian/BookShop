@@ -1,11 +1,14 @@
 package com.bookshop.model;
 
-import com.bookshop.enums.Role;
+import com.bookshop.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name = "UserEntity")
 @Entity
@@ -14,7 +17,7 @@ public class UserEntity {
 	@Id
 	@Column(name = "userId", insertable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId;
+	private Long userId;
 
 	@Column(name = "userName")
   private String userName;
@@ -22,6 +25,10 @@ public class UserEntity {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", referencedColumnName = "roleId")
 	private Role role;
+//
+//	@ManyToOne
+//	@JoinColumn(name="roleId", nullable=false)
+//	private Role role;
 
 	@Column(name = "email")
 	private String email;

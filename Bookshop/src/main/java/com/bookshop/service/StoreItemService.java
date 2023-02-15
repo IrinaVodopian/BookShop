@@ -11,7 +11,7 @@ public class StoreItemService {
 	@Autowired
 	public StoreItemRepository storeItemRepository;
 
-	public StoreItem getStoreItemById(Integer id) {
+	public StoreItem getStoreItemById(Long id) {
 		return storeItemRepository.findById(id).orElse(null);
 	}
 
@@ -19,12 +19,12 @@ public class StoreItemService {
 		return storeItemRepository.save(storeItem);
 	}
 
-	public StoreItem editStoreItem(StoreItem storeItem, Integer storeItemId) {
+	public StoreItem editStoreItem(StoreItem storeItem, Long storeItemId) {
 		storeItemRepository.deleteById( storeItemId);
 		return storeItemRepository.save(storeItem);
 	}
 
-	public void deleteStoreItemById(Integer productId) {
+	public void deleteStoreItemById(Long productId) {
 		storeItemRepository.deleteById(productId);
 	}
 }
