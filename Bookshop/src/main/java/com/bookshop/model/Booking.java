@@ -1,6 +1,7 @@
 package com.bookshop.model;
 
 import com.bookshop.model.enums.BookingStatus;
+import com.bookshop.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import jakarta.persistence.*;
@@ -19,12 +20,12 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long bookingId;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_id", referencedColumnName = "productId")
+	@ManyToOne
+	@JoinColumn(name = "productId")
 	private Product product;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_entity_id", referencedColumnName = "userId")
+	@ManyToOne
+	@JoinColumn(name = "userId")
 	private UserEntity user;
 
 	@Column(name = "deliveryAddress")
@@ -36,9 +37,13 @@ public class Booking {
 	@Column(name = "time")
 	private Time time;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "status_id", referencedColumnName = "statusId")
+	@ManyToOne
+	@JoinColumn(name = "statusId", nullable=false)
 	private BookingStatus status;
+
+	@ManyToOne
+	@JoinColumn(name="roleId", nullable=false)
+	private Role role;
 
 	@Column(name = "quantity")
 	private int quantity;

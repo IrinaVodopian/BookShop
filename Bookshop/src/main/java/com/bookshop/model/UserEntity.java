@@ -21,14 +21,9 @@ public class UserEntity {
 
 	@Column(name = "userName")
   private String userName;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "role_id", referencedColumnName = "roleId")
+	@ManyToOne
+	@JoinColumn(name="roleId", nullable=false)
 	private Role role;
-//
-//	@ManyToOne
-//	@JoinColumn(name="roleId", nullable=false)
-//	private Role role;
 
 	@Column(name = "email")
 	private String email;

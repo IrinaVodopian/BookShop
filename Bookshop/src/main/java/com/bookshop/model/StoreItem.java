@@ -2,7 +2,6 @@ package com.bookshop.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +16,8 @@ public class StoreItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long storeId;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_id", referencedColumnName = "productId")
+	@ManyToOne
+	@JoinColumn(name = "productId")
 	private Product product;
 
 	@Column(name = "availableQty")
