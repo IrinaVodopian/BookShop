@@ -1,7 +1,6 @@
 package com.bookshop.model.enums;
 
 import com.bookshop.model.Booking;
-import com.bookshop.model.UserEntity;
 import jakarta.persistence.*;
 
 import java.util.Set;
