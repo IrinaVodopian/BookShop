@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "UserEntity")
 @Entity
 public class UserEntity {
 
@@ -21,8 +20,7 @@ public class UserEntity {
 
 	@Column(name = "userName")
   private String userName;
-	@ManyToOne
-	@JoinColumn(name="roleId", nullable=false)
+	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	@Column(name = "email")

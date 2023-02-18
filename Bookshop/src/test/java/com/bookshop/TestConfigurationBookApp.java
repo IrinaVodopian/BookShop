@@ -1,4 +1,4 @@
-package com.bookshop.main;
+package com.bookshop;
 
 import com.bookshop.controller.BookingController;
 import com.bookshop.controller.ProductController;
@@ -12,13 +12,15 @@ import com.bookshop.service.ProductService;
 import com.bookshop.service.StoreItemService;
 import com.bookshop.service.UserService;
 import org.mockito.Mockito;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Profile("test")
 @Configuration
-@EnableJpaRepositories
-public class TestConfiguration {
+@EnableConfigurationProperties
+@EnableWebMvc
+public class TestConfigurationBookApp {
 
 	@Bean
 	@Primary

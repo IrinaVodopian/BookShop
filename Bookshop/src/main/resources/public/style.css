@@ -13,6 +13,13 @@ body{
     color: white;
 }
 
+header{
+    color: white;
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
 .center{
     justify-content: center;
     margin-top: 150px;

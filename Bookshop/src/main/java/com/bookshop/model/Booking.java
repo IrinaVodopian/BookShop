@@ -1,8 +1,8 @@
 package com.bookshop.model;
 
 import com.bookshop.model.enums.BookingStatus;
-import com.bookshop.model.enums.Role;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,9 @@ import java.util.Date;
 
 @AllArgsConstructor
 @Data
-@Table(name = "Booking")
 @Entity
 @NoArgsConstructor
+@Builder
 public class Booking {
 	@Id
 	@Column(name = "bookingId", insertable = false, updatable = false)
@@ -37,13 +37,8 @@ public class Booking {
 	@Column(name = "time")
 	private Time time;
 
-	@ManyToOne
-	@JoinColumn(name = "statusId", nullable=false)
+	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
-
-	@ManyToOne
-	@JoinColumn(name="roleId", nullable=false)
-	private Role role;
 
 	@Column(name = "quantity")
 	private int quantity;
