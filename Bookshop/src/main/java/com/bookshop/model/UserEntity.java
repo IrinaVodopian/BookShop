@@ -22,7 +22,7 @@ public class UserEntity {
 	@Column(name = "userName")
   private String userName;
 	@ManyToOne
-	@JoinColumn(name="roleId", nullable=false)
+	@JoinColumn(name="roleId")
 	private Role role;
 
 	@Column(name = "email")

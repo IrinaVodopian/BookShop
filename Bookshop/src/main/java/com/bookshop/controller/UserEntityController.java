@@ -1,6 +1,7 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.UserEntity;
+import com.bookshop.model.enums.Role;
 import com.bookshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,10 @@ public class UserEntityController {
 
 	@PostMapping
 	UserEntity createNewUser(@RequestBody UserEntity user) {
+		if(user.getRole() == null){
+			user.setRole(Role.CUSTOMER);
+		}
+		System.out.println(user.toString());
 		return userService.createNewUser(user);
 	}
 
