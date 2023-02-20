@@ -22,12 +22,12 @@
 //    });
 function validateForm() {
         var body = {
-            inputName: $("#inputName").val(),
-            inputEmail: $("#inputEmail").val(),
-            inputPhone: $("#inputPhone").val(),
-            inputAddress: $("#inputAddress").val(),
-            inputLogin: $("#inputLogin").val(),
-            inputPassword: $("#inputPassword").val()
+            userName: $("#inputName").val(),
+            email: $("#inputEmail").val(),
+            phone: $("#inputPhone").val(),
+            address: $("#inputAddress").val(),
+            login: $("#inputLogin").val(),
+            password: $("#inputPassword").val()
         };
         return body;
 

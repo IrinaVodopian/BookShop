@@ -1,7 +1,6 @@
 package com.bookshop.model;
 
 import com.bookshop.model.enums.BookingStatus;
-import com.bookshop.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import jakarta.persistence.*;
@@ -11,7 +10,6 @@ import java.util.Date;
 
 @AllArgsConstructor
 @Data
-@Table(name = "Booking")
 @Entity
 @NoArgsConstructor
 public class Booking {
@@ -37,13 +35,8 @@ public class Booking {
 	@Column(name = "time")
 	private Time time;
 
-	@ManyToOne
-	@JoinColumn(name = "statusId", nullable=false)
+	@Enumerated(EnumType.STRING)
 	private BookingStatus status;
-
-	@ManyToOne
-	@JoinColumn(name="roleId", nullable=false)
-	private Role role;
 
 	@Column(name = "quantity")
 	private int quantity;

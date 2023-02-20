@@ -3,6 +3,7 @@ package com.bookshop.controller;
 import com.bookshop.model.UserEntity;
 import com.bookshop.model.enums.Role;
 import com.bookshop.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,10 @@ public class UserEntityController {
 	}
 
 	@PostMapping
-	UserEntity createNewUser(@RequestBody UserEntity user) {
+	UserEntity createNewUser(@Valid @RequestBody UserEntity user) {
 		if(user.getRole() == null){
 			user.setRole(Role.CUSTOMER);
 		}
-		System.out.println(user.toString());
 		return userService.createNewUser(user);
 	}
 
@@ -33,6 +33,14 @@ public class UserEntityController {
 	UserEntity editUserProfile(@RequestBody UserEntity user, @PathVariable Long userId) {
 		return userService.editUserProfile(user, userId);
 	}
+
+	@PutMapping("/{userId}/{role}")
+	UserEntity setUserRole(@PathVariable Long userId, Role role) {
+		UserEntity user = userService.getUserById(userId).get();
+		user.setRole(role);
+		return userService.editUserProfile(user, userId);
+	}
+
 
 	@DeleteMapping("/{userId}")
 	void deleteUser(@PathVariable Long userId) {
