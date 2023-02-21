@@ -1,5 +1,4 @@
 package com.bookshop.model.enums;
-import jakarta.persistence.*;
 
 public enum BookingStatus {
 	SUBMITTED,

@@ -1,19 +1,18 @@
 function validateForm() {
         var body = {
-            userName: $("#inputName").val(),
-            email: $("#inputEmail").val(),
-            phone: $("#inputPhone").val(),
-            address: $("#inputAddress").val(),
-            login: $("#inputLogin").val(),
-            password: $("#inputPassword").val()
+            product: 1,
+            user: 1,
+            date: $("#inputDate").val(),
+            time: $("#inputTime").val(),
+            address: $("#inputAddress").val()
         };
         return body;
 }
 
-function sendRequest(){
+function sendRequest(id){
     return $.ajax({
-                    type: 'POST',
-                    url: '/user',
+                    type: 'PUT',
+                    url: '/booking/{id}',
                     data: JSON.stringify(body),
                     success: function(data) {
                         localStorage.setItem('status', 'success');
