@@ -1,3 +1,14 @@
+$(document).ready(function() {
+    if (localStorage.getItem('status') === 'success') {
+       $("#validation-success").fadeIn(3000).fadeOut(3000);
+        localStorage.setItem('status', '');
+    };
+    $("#create-user").click(function() {
+            var body = validateForm();
+            if (body) { sendRequest(body); }
+        });
+    });
+
 function validateForm() {
         var body = {
             userName: $("#inputName").val(),

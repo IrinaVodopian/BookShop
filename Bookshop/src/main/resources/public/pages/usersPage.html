@@ -6,17 +6,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/jquery-3.0.0.js"></script>
     <script src="../scripts/users.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="../scripts/utilitiesMethods.js"></script>
 </head>
 <body>
 <div id="nav-placeholder"></div>
-<script>
-            $(function () {
-                $("#nav-placeholder").load("../elements/navbar.html");
-            });
-
-</script>
 <div class="container center">
     <h3>USERS PAGE</h3>
     <br></br><br></br>
@@ -64,26 +59,10 @@
             <th scope="col">Email</th>
             <th scope="col">Address</th>
         </tr>
-<!--        <tbody>-->
-<!--        <tr>-->
-<!--            <th scope="row">1</th>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Otto</td>-->
-<!--            <td>@mdo</td>-->
-<!--            <td>@ooM</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <th scope="row">2</th>-->
-<!--            <td>Jacob</td>-->
-<!--            <td>Thornton</td>-->
-<!--            <td>@fat</td>-->
-<!--            <td>@super</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
     </table>
     <br></br>
-    <button type="button" class="btn btn-success">Create</button>
-    <button type="button" class="btn btn-danger">Delete</button>
+    <a href="../pages/userProfile.html" class="btn btn-success">Create</a>
+    <button type="button" class="btn btn-danger" id="delete-user">Delete</button>
     <button type="button" class="btn btn-primary">Edit</button>
 </div>
 </body>
