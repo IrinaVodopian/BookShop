@@ -19,7 +19,7 @@
 $(document).ready(function(){
     $("#create-user").click(function() {
             var body = validateForm();
-            if (body) { sendRequest(); }
+            if (body) { sendRequest(body); }
         });
     });
 </script>

@@ -10,7 +10,7 @@ function validateForm() {
         return body;
 }
 
-function sendRequest(){
+function sendRequest(body){
     return $.ajax({
                     type: 'POST',
                     url: '/user',
