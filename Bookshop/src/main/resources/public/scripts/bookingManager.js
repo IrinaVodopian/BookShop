@@ -13,19 +13,18 @@ $(document).ready(function() {
                 $('<p id="address">').text('Delivery address: ' + item.deliveryAddress),
                 $('<p id="status">').text('Status: ' + item.status),
                 $('<img class="card-img-bottom" src="marguerite.jpg" alt="Product image">'),
-                $('<button type="button" class="btn btn-success onclick="setStatus($(this), APPROVED)" id=' + item.product.productId + '>').text('Approve'),
-                $('<button type="button" class="btn btn-danger" onclick="setStatus($(this), REJECTED)" id=' + item.product.productId + '>').text('Reject'),
-                $('<button type="button" class="btn btn-primary" onclick="setStatus($(this), COMPLETED)" id=' + item.product.productId + '>').text('Close')
+                $('<button type="button" class="btn btn-success" status="APPROVED" onclick="setStatus($(this))" id=' + item.product.productId + '>').text('Approve'),
+                $('<button type="button" class="btn btn-danger" status="REJECTED" onclick="setStatus($(this))" id=' + item.product.productId + '>').text('Reject'),
+                $('<button type="button" class="btn btn-primary" status="COMPLETED" onclick="setStatus($(this))" id=' + item.product.productId + '>').text('Close')
             ).appendTo('#bookingCard');
         });
     });
     });
 
-
 function setStatus(object, status){
-    console.log("called");
     alert("Status has been changed!");
     var id = object.attr('id');
+    var status = object.attr('status');
     return $.ajax({
                     type: 'PUT',
                     url: '/booking/status/' + id,
