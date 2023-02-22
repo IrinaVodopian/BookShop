@@ -12,102 +12,34 @@ $(document).ready(function() {
                 $('<p id="author">').text('Author: ' + item.author),
                 $('<p id="price">').text('Price: ' + item.price),
                 $('<img class="card-img-bottom" src="marguerite.jpg" alt="Product image">'),
-                $('<button type="button" class="btn btn-primary" id="book-product" onclick="showAlert()">').text('Book')
+                $('<button type="button" class="btn btn-primary" onclick="bookProduct()" id=' + item.productId + '">').text('Book')
             ).appendTo('#productCard');
         });
     });
     });
 
+function bookProduct(){
+    var id = $(this).attr('id');
+    var booking = $.getJSON("/product/" + id, function(data, status);
+    product.set
+    if (product) {
+                return $.ajax({
+                    type: 'POST',
+                    url: '/api/story',
+                    data: JSON.stringify(body),
+                    success: function(data) {
+                        localStorage.setItem('status', 'success');
+                        location.reload();
 
-//    $('#delete-user').on('click', function() {
-//            var users = getSelectedUsers();
-//            $.ajax({
-//                    type: 'DELETE',
-//                    url: '/user',
-//                    data: JSON.stringify(users),
-//                    success: function(data) {
-//                        $("#validation-success").fadeIn(3000).fadeOut(3000);
-//                        $.each(stories, function(i, row) {
-//                            var rowToDelete = $(".users-row-" + row.userId);
-//                            rowToDelete.remove();
-//                        });
-//                    },
-//                    contentType: "application/json",
-//                    dataType: 'json'
-//                });
-//        });
-//    });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        showError(jqXHR.responseJSON.message, jqXHR.responseText);
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+            }
 
-//    $("#add-story").click(function() {
-//        var body = validateForm();
-//
-//        if (body) {
-//            return $.ajax({
-//                type: 'POST',
-//                url: '/api/story',
-//                data: JSON.stringify(body),
-//                success: function(data) {
-//                    localStorage.setItem('status', 'success');
-//                    location.reload();
-//
-//                },
-//                error: function(jqXHR, textStatus, errorThrown) {
-//                    showError(jqXHR.responseJSON.message, jqXHR.responseText);
-//                },
-//                contentType: "application/json",
-//                dataType: 'json'
-//            });
-//        }
-//    });
-//
-//    $('#delete-story').on('click', function() {
-//        var stories = getSelectedStories();
-//
-//        $.ajax({
-//                type: 'DELETE',
-//                url: '/api/story',
-//                data: JSON.stringify(stories),
-//                success: function(data) {
-//                    $("#validation-success").fadeIn(3000).fadeOut(3000);
-//                    $.each(stories, function(i, row) {
-//                        var rowToDelete = $(".story-row-" + row.jiraId);
-//                        rowToDelete.remove();
-//                    });
-//                },
-//                error: function(jqXHR, textStatus, errorThrown) {
-//                    showError(jqXHR.responseJSON.message, jqXHR.responseText);
-//                },
-//                contentType: "application/json",
-//                dataType: 'json'
-//            });
-//    });
-//});
-//
-//function validateForm() {
-//    var body = {
-//        jiraId: $("#jiraId-input").val(),
-//        summary: $("#summary-input").val()
-//    };
-//    if (body.jiraId == "" || body.summary == "") {
-//        showError('Please fill all fields', 'All fields must pe populated');
-//        return false;
-//    }
-//    return body;
-//}
-////
-//function getSelectedUsers() {
-//    var selected = [];
-//    $("tr.users-row").each(function() {
-//        $this = $(this);
-//        var isSelected = $this.find(".w3-check").is(':checked');
-//        if (isSelected) {
-//            selected.push($this.find("#userId").text());
-//        }
-//    });
-//    console.log(selected)
-//    return selected;
-//}
 
-function showAlert(){
     alert("The product has been booked!");
 }

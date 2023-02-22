@@ -21,30 +21,7 @@ $(document).ready(function() {
         });
     });
 
-//    $("#add-story").click(function() {
-//        var body = validateForm();
-//
-//        if (body) {
-//            return $.ajax({
-//                type: 'POST',
-//                url: '/api/story',
-//                data: JSON.stringify(body),
-//                success: function(data) {
-//                    localStorage.setItem('status', 'success');
-//                    location.reload();
-//
-//                },
-//                error: function(jqXHR, textStatus, errorThrown) {
-//                    showError(jqXHR.responseJSON.message, jqXHR.responseText);
-//                },
-//                contentType: "application/json",
-//                dataType: 'json'
-//            });
-//        }
-//    });
-//
     $('#delete-product').on('click', function() {
-    console.log("clicked")
         var stores = getSelectedProducts();
         $.ajax({
                 type: 'DELETE',
@@ -60,33 +37,67 @@ $(document).ready(function() {
                 contentType: "application/json",
                 dataType: 'json'
             });
+            alert("The items were deleted.");
     });
 });
-//
-//function validateForm() {
-//    var body = {
-//        jiraId: $("#jiraId-input").val(),
-//        summary: $("#summary-input").val()
-//    };
-//    if (body.jiraId == "" || body.summary == "") {
-//        showError('Please fill all fields', 'All fields must pe populated');
-//        return false;
-//    }
-//    return body;
-//}
-//
+
 function getSelectedProducts() {
     var selected = [];
     $("tr.store-row").each(function() {
         $this = $(this);
         var isSelected = $this.find(".w3-check").is(':checked');
         if (isSelected) {
-//            var body = {
-//                $this.find("#productId").text()
-//             };
             selected.push($this.find("#productId").text());
         }
     });
     console.log(selected);
     return selected;
+}
+
+function saveItem(){
+    var body = validateForm();
+    if (body) { sendRequest(body);}
+    alert("The item has been saved!");
+}
+
+function validateForm() {
+        var productId = $("#inputProductIdModal").val();
+        var productModal = getProduct(productId);
+        console.log(productModal);
+        var body = {
+            storeId: $("#inputStoreIdModal").val(),
+            product: productModal,
+            availableQty: $("#inputAvailable").val(),
+            author: $("#inputBooked").val(),
+            price: $("#inputDelivered").val()
+        };
+        console.log(body);
+        return body;
+}
+
+function sendRequest(body){
+    return $.ajax({
+                    type: 'POST',
+                    url: '/storeItem',
+                    data: JSON.stringify(body),
+                    success: function(data) {
+                        localStorage.setItem('status', 'success');
+                        location.reload();
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+}
+
+function getProduct(id){
+    return $.ajax({
+                    type: 'GET',
+                    url: '/product/' + id,
+                    success: function(data) {
+                        localStorage.setItem('status', 'success');
+                        location.reload();
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
 }

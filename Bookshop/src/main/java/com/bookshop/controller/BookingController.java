@@ -2,6 +2,7 @@ package com.bookshop.controller;
 
 import com.bookshop.model.Booking;
 import com.bookshop.model.UserEntity;
+import com.bookshop.model.enums.BookingStatus;
 import com.bookshop.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,11 @@ public class BookingController {
 	@PutMapping("/{bookingId}")
 	Booking editBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
 		return bookingService.editBooking(booking, bookingId);
+	}
+
+	@PutMapping("/status/{bookingId}")
+	Booking setStatus(@RequestBody BookingStatus status, @PathVariable Long bookingId) {
+		return bookingService.setStatus(status, bookingId);
 	}
 
 	@DeleteMapping("/{bookingId}")

@@ -1,6 +1,7 @@
 package com.bookshop.service;
 
 import com.bookshop.model.Booking;
+import com.bookshop.model.enums.BookingStatus;
 import com.bookshop.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,11 @@ public class BookingService {
 
 	public List<Booking> getBookings() {
 		return bookingRepository.findAll();
+	}
+
+	public Booking setStatus(BookingStatus status, Long bookingId) {
+		Booking booking = bookingRepository.findById(bookingId).get();
+		booking.setStatus(status);
+		return bookingRepository.save(booking);
 	}
 }

@@ -20,6 +20,7 @@ $(document).ready(function() {
             ).appendTo('#users');
         });
     });
+
     $('#delete-user').on('click', function() {
             var users = getSelectedUsers();
             $.ajax({

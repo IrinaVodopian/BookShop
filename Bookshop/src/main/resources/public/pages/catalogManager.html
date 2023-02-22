@@ -48,12 +48,15 @@
     <br></br><br></br>
     <div id="productCard"></div>
 
+
+
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content text-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit store item</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit product</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -62,42 +65,42 @@
                     <div class="mb-3 row">
                         <label for="inputProductIdModal" class="col-sm-2 col-form-label">Product id</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control text-bg-secondary" id="inputProductIdModal" placeholder="Product id">
+                            <input type="input" class="form-control" id="inputProductIdModal" placeholder="Product id">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="inputProductNameModal" class="col-sm-2 col-form-label">Product name</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control text-bg-secondary" id="inputProductNameModal" placeholder="Product name">
+                            <input type="input" class="form-control" id="inputProductNameModal" placeholder="Product name">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="inputAvailable" class="col-sm-2 col-form-label">Available</label>
+                        <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control" id="inputAvailable" placeholder="quantity">
+                            <input type="input" class="form-control" id="inputDescription" placeholder="Description">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="inputBooked" class="col-sm-2 col-form-label">Booked</label>
+                        <label for="inputAuthorModal" class="col-sm-2 col-form-label">Author</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control" id="inputBooked" placeholder="quantity">
+                            <input type="input" class="form-control" id="inputAuthorModal" placeholder="Author">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="inputDelivered" class="col-sm-2 col-form-label">Delivered</label>
+                        <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control" id="inputDelivered" placeholder="quantity">
+                            <input type="input" class="form-control" id="inputPriceModel" placeholder="Price">
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveProduct()">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+<!-
 </div>
 </body>
 </html>
