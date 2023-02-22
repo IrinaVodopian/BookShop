@@ -34,3 +34,7 @@ function sendRequest(body){
                     dataType: 'json'
                 });
 }
+
+function showAlert(){
+    alert("The user has been created!");
+}

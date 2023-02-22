@@ -1,10 +1,12 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.Booking;
+import com.bookshop.model.UserEntity;
 import com.bookshop.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -13,6 +15,11 @@ public class BookingController {
 
 	@Autowired
 	BookingService bookingService;
+
+	@GetMapping()
+	List<Booking> getBookings() {
+		return bookingService.getBookings();
+	}
 
 	@GetMapping("/{bookingId}")
 	Optional<Booking> getBookingById(@PathVariable Long bookingId) {

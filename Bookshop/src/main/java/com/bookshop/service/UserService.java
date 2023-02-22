@@ -34,4 +34,12 @@ public class UserService {
 	public List<UserEntity> getUsers() {
 		return userRepository.findAll();
 	}
+
+	public void deleteAllById(List<Long> ids) {
+		userRepository.deleteAllById(ids);
+	}
+
+	public UserEntity getUserByName(String userName) {
+		return userRepository.findByUserName(userName);
+	}
 }

@@ -5,6 +5,8 @@ import com.bookshop.repository.StoreItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StoreItemService {
 
@@ -26,5 +28,13 @@ public class StoreItemService {
 
 	public void deleteStoreItemById(Long productId) {
 		storeItemRepository.deleteById(productId);
+	}
+
+	public List<StoreItem> getStoreItems() {
+		return storeItemRepository.findAll();
+	}
+
+	public void deleteAllById(List<Long> ids) {
+		storeItemRepository.deleteAllById(ids);
 	}
 }
