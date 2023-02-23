@@ -42,4 +42,9 @@ public class BookingService {
 		booking.setStatus(status);
 		return bookingRepository.save(booking);
 	}
+
+	public List<Booking> getBookingByUser(Long id) {
+		return bookingRepository.	findByUserUserId(id);
+	}
+
 }

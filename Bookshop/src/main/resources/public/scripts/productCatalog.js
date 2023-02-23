@@ -12,34 +12,63 @@ $(document).ready(function() {
                 $('<p id="author">').text('Author: ' + item.author),
                 $('<p id="price">').text('Price: ' + item.price),
                 $('<img class="card-img-bottom" src="marguerite.jpg" alt="Product image">'),
-                $('<button type="button" class="btn btn-primary" onclick="bookProduct()" id=' + item.productId + '">').text('Book')
+                $('<button type="button" class="btn btn-primary" onclick="bookProduct($(this))" id=' + item.productId + '>').text('Book')
             ).appendTo('#productCard');
         });
     });
     });
 
-//function bookProduct(){
-//    var id = $(this).attr('id');
-//    var booking = $.getJSON("/product/" + id, function(data, status);
-//    product.set
-//    if (product) {
-//                return $.ajax({
-//                    type: 'POST',
-//                    url: '/api/story',
-//                    data: JSON.stringify(body),
-//                    success: function(data) {
-//                        localStorage.setItem('status', 'success');
-//                        location.reload();
-//
-//                    },
-//                    error: function(jqXHR, textStatus, errorThrown) {
-//                        showError(jqXHR.responseJSON.message, jqXHR.responseText);
-//                    },
-//                    contentType: "application/json",
-//                    dataType: 'json'
-//                });
-//            }
-//
-//
-//    alert("The product has been booked!");
-//}
+//CHECK LOCAL STORAGE AND USERS RETURNS 500
+function bookProduct(object){
+    var productId = object.attr('id');
+    localStorage.setItem('userId', '1');
+    var product = getProduct(productId);
+    console.log(product);
+    var user = getUser();
+    var body = {
+                user: user,
+                product: product,
+                deliveryAddress: user.address,
+                date: '1989-09-29',
+                time: '18:18:18',
+                quantity: 1
+            };
+    createBooking(body);
+}
+
+function getProduct(productId){
+    return $.ajax({
+                    type: 'GET',
+                    url: '/product/' + productId,
+                    dataType: "json",
+                    success: function(data) {
+                },
+
+                });
+    }
+
+function getUser(){
+    return $.ajax({
+                    type: 'GET',
+                    url: '/user/' + localStorage.getItem('userId'),
+                    dataType: "json",
+                    success: function(data) {
+
+                }
+                });
+}
+
+
+function createBooking(body){
+    return $.ajax({
+                    type: 'POST',
+                    url: '/booking',
+                    data: JSON.stringify(body),
+                    success: function(data) {
+                        localStorage.setItem('status', 'success');
+                        location.reload();
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+}
