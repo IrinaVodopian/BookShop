@@ -21,6 +21,26 @@ $(document).ready(function() {
         });
     });
 
+    $('#search-item').on('click', function() {
+                        clearTable();
+                        var id = document.getElementById('inputProductId').value;
+                        $.getJSON("/storeItem/" + id, function(data, status) {
+                                    $tdForCheckbox = $('<td>').append(
+                                                    $('<input>', {
+                                                        class: "w3-check",
+                                                        type: "checkbox"
+                                                    }));
+                                                var $tr = $('<tr class="store-row store-row-' + data.storeId + '">').append(
+                                                    $tdForCheckbox,
+                                                    $('<td id="productId">').text(data.product.productId),
+                                                    $('<td id="productName">').text(data.product.productName),
+                                                    $('<td id="available">').text(data.availableQty),
+                                                    $('<td id="booked">').text(data.bookedQty),
+                                                    $('<td id="sold">').text(data.soldQty)
+                                                ).appendTo('#store');
+                            });
+                });
+
 //CHECK 500 ERROR
     $('#delete-product').on('click', function() {
         var stores = getSelectedProducts();
@@ -55,13 +75,16 @@ function getSelectedProducts() {
 function saveItem(){
     var body = validateForm();
     if (body) { sendRequest(body);}
-    alert("The item has been saved!");
 }
 
+//CHECK IF EMPTY
 function validateForm() {
+//        if($("input:empty").length != 0){
+//                alert("fields can not be empty");
+//                return false;
+//                }
         var productId = $("#inputProductIdModal").val();
         var productModal = getProduct(productId);
-        console.log(productModal);
         var body = {
             storeId: $("#inputStoreIdModal").val(),
             product: productModal,
@@ -80,7 +103,8 @@ function sendRequest(body){
                     data: JSON.stringify(body),
                     success: function(data) {
                         localStorage.setItem('status', 'success');
-                        location.reload();
+                        alert("The item has been saved!");
+//                        location.reload();
                     },
                     contentType: "application/json",
                     dataType: 'json'
@@ -98,4 +122,10 @@ function getProduct(id){
                     contentType: "application/json",
                     dataType: 'json'
                 });
+}
+
+function clearTable(){
+    $("tr.store-row").each(function() {
+            $(this).remove();
+        });
 }

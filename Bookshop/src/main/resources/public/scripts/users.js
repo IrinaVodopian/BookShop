@@ -21,6 +21,7 @@ $(document).ready(function() {
         });
     });
 
+//CHECK WORKS IN 2.9
     $('#delete-user').on('click', function() {
             var users = getSelectedUsers();
             $.ajax({
@@ -37,26 +38,25 @@ $(document).ready(function() {
                 });
         });
 
-    $('#search-user').on('click', function() {
-            var id = $("#user-id").text();
-            $.getJSON("/user/" + id, function(data, status) {
-                    $.each(data, function(i, item) {
-                        $tdForCheckbox = $('<td>').append(
-                            $('<input>', {
-                                class: "w3-check",
-                                type: "checkbox"
-                            }));
-                        var $tr = $('<tr class="users-row users-row-' + item.userId + '">').append(
-                            $tdForCheckbox,
-                            $('<td id="user-id">').text(item.userId),
-                            $('<td id="user-name">').text(item.userName),
-                            $('<td id="login">').text(item.login),
-                            $('<td id="email">').text(item.email),
-                            $('<td id="address">').text(item.address)
-                        ).appendTo('#users');
-                    });
-                });
-    });
+        $('#search-user').on('click', function() {
+                    clearTable();
+                    var id = document.getElementById('inputUserId').value;
+                    $.getJSON("/user/userId/" + id, function(data, status) {
+                                $tdForCheckbox = $('<td>').append(
+                                    $('<input>', {
+                                        class: "w3-check",
+                                        type: "checkbox"
+                                    }));
+                                var $tr = $('<tr class="users-row users-row-' + data.userId + '">').append(
+                                    $tdForCheckbox,
+                                    $('<td id="user-id">').text(data.userId),
+                                    $('<td id="user-name">').text(data.userName),
+                                    $('<td id="login">').text(data.login),
+                                    $('<td id="email">').text(data.email),
+                                    $('<td id="address">').text(data.address)
+                                ).appendTo('#users');
+                        });
+            });
 });
 
 function getSelectedUsers() {
@@ -80,4 +80,10 @@ function editUser(){
 function createUser(){
     localStorage.setItem('editUser', 'user id');
     location.href = "../pages/userProfile.html";
+}
+
+function clearTable(){
+    $("tr.users-row").each(function() {
+            $(this).remove();
+        });
 }
