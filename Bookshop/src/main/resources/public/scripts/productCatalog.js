@@ -22,49 +22,21 @@ $(document).ready(function() {
 function bookProduct(object){
     var productId = object.attr('id');
     localStorage.setItem('userId', '1');
-    var product = getProduct(productId);
-    console.log(product);
-    var user = getUser();
     var body = {
-                user: user,
-                product: product,
-                deliveryAddress: user.address,
-                date: '1989-09-29',
-                time: '18:18:18',
+                userId: localStorage.getItem('userId'),
+                productId: productId,
                 quantity: 1
             };
     createBooking(body);
 }
 
-function getProduct(productId){
-    return $.ajax({
-                    type: 'GET',
-                    url: '/product/' + productId,
-                    dataType: "json",
-                    success: function(data) {
-                },
-
-                });
-    }
-
-function getUser(){
-    return $.ajax({
-                    type: 'GET',
-                    url: '/user/' + localStorage.getItem('userId'),
-                    dataType: "json",
-                    success: function(data) {
-
-                }
-                });
-}
-
-
 function createBooking(body){
     return $.ajax({
                     type: 'POST',
-                    url: '/booking',
+                    url: '/booking/createById',
                     data: JSON.stringify(body),
                     success: function(data) {
+                        alert('Booking has been created!');
                         localStorage.setItem('status', 'success');
                         location.reload();
                     },
@@ -72,3 +44,25 @@ function createBooking(body){
                     dataType: 'json'
                 });
 }
+
+//function getProduct(productId){
+//    return $.ajax({
+//                    type: 'GET',
+//                    url: '/product/' + productId,
+//                    dataType: "json",
+//                    success: function(data) {
+//                },
+//
+//                });
+//    }
+//
+//function getUser(){
+//    return $.ajax({
+//                    type: 'GET',
+//                    url: '/user/userId/' + localStorage.getItem('userId'),
+//                    dataType: "json",
+//                    success: function(data) {
+//
+//                }
+//                });
+//}

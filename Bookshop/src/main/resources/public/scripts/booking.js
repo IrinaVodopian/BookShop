@@ -6,7 +6,7 @@ $(document).ready(function() {
     //CHANGE CHECK MAYBE REPOSITORY METHOD OR QUERY
     localStorage.setItem('userId', '1');
 
-    $.getJSON("/booking/" + localStorage.getItem('userId'), function(data, status) {
+    $.getJSON("/booking/userId/" + localStorage.getItem('userId'), function(data, status) {
             $.each(data, function(i, item) {
            var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.product.productId + '">').append(
                     $('<div class="card-body">'),

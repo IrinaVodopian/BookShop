@@ -40,16 +40,8 @@ public class UserService {
 		userRepository.deleteAllById(ids);
 	}
 
-	public UserEntity getUserByName(String userName) {
-		return userRepository.findByUserName(userName);
-	}
-
-//	public UserEntity getUserByLogin(Credentials credentials) {
-//		UserEntity user = userRepository.findByLogin(credentials.getLogin());
-//		if(user.getPassword().equals(credentials.getPassword())){
-//			return user;
-//		}
-//		return null;
+//	public UserEntity getUserByName(String userName) {
+//		return userRepository.findByUserName(userName);
 //	}
 
 	public UserEntity getUserByLogin(String login) {

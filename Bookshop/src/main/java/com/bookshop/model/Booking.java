@@ -2,6 +2,7 @@ package com.bookshop.model;
 
 import com.bookshop.model.enums.BookingStatus;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Data
 @Entity
 @NoArgsConstructor
+@Builder
 public class Booking {
 	@Id
 	@Column(name = "bookingId", insertable = false, updatable = false)

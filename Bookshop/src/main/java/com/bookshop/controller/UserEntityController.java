@@ -19,22 +19,17 @@ public class UserEntityController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/{userId}")
+	@GetMapping("/userId/{userId}")
 	Optional<UserEntity> getUserById(@PathVariable Long userId) {
 		return userService.getUserById(userId);
 	}
 
-	@GetMapping("/userName")
-	UserEntity getUserByName(@RequestBody String userName) {
-		return userService.getUserByName(userName);
-	}
-
-//	@GetMapping("/credentials")
-//	UserEntity getUserByCredentials(@RequestBody Credentials credentials) {
-//		return userService.getUserByLogin(credentials);
+//	@GetMapping("/userName")
+//	UserEntity getUserByName(@RequestBody String userName) {
+//		return userService.getUserByName(userName);
 //	}
 
-	@GetMapping("/{login}")
+	@GetMapping("/userLogin/{login}")
 	UserEntity getUserByLogin(@PathVariable String login) {
 		return userService.getUserByLogin(login);
 	}
