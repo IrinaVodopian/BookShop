@@ -1,5 +1,6 @@
 package com.bookshop.controller;
 
+import com.bookshop.model.Credentials;
 import com.bookshop.model.UserEntity;
 import com.bookshop.model.enums.Role;
 import com.bookshop.service.UserService;
@@ -23,9 +24,19 @@ public class UserEntityController {
 		return userService.getUserById(userId);
 	}
 
-	@GetMapping("/{userName}")
-	UserEntity getUserByName(@PathVariable String userName) {
+	@GetMapping("/userName")
+	UserEntity getUserByName(@RequestBody String userName) {
 		return userService.getUserByName(userName);
+	}
+
+//	@GetMapping("/credentials")
+//	UserEntity getUserByCredentials(@RequestBody Credentials credentials) {
+//		return userService.getUserByLogin(credentials);
+//	}
+
+	@GetMapping("/{login}")
+	UserEntity getUserByLogin(@PathVariable String login) {
+		return userService.getUserByLogin(login);
 	}
 
 	@GetMapping()

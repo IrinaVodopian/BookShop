@@ -21,6 +21,7 @@ $(document).ready(function() {
         });
     });
 
+//CHECK 500 ERROR
     $('#delete-product').on('click', function() {
         var stores = getSelectedProducts();
         $.ajax({
@@ -29,10 +30,7 @@ $(document).ready(function() {
                 data: JSON.stringify(stores),
                 success: function(data) {
                     $("#validation-success").fadeIn(3000).fadeOut(3000);
-//                    $.each(stories, function(i, row) {
-//                        var rowToDelete = $(".store-row-" + row.storeId);
-//                        rowToDelete.remove();
-//                    });
+                     location.reload();
                 },
                 contentType: "application/json",
                 dataType: 'json'

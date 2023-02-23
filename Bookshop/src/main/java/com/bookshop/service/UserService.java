@@ -1,5 +1,6 @@
 package com.bookshop.service;
 
+import com.bookshop.model.Credentials;
 import com.bookshop.model.UserEntity;
 import com.bookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,17 @@ public class UserService {
 
 	public UserEntity getUserByName(String userName) {
 		return userRepository.findByUserName(userName);
+	}
+
+//	public UserEntity getUserByLogin(Credentials credentials) {
+//		UserEntity user = userRepository.findByLogin(credentials.getLogin());
+//		if(user.getPassword().equals(credentials.getPassword())){
+//			return user;
+//		}
+//		return null;
+//	}
+
+	public UserEntity getUserByLogin(String login) {
+		return userRepository.findByLogin(login);
 	}
 }

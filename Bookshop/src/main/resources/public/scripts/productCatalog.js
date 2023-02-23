@@ -18,28 +18,28 @@ $(document).ready(function() {
     });
     });
 
-function bookProduct(){
-    var id = $(this).attr('id');
-    var booking = $.getJSON("/product/" + id, function(data, status);
-    product.set
-    if (product) {
-                return $.ajax({
-                    type: 'POST',
-                    url: '/api/story',
-                    data: JSON.stringify(body),
-                    success: function(data) {
-                        localStorage.setItem('status', 'success');
-                        location.reload();
-
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        showError(jqXHR.responseJSON.message, jqXHR.responseText);
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
-                });
-            }
-
-
-    alert("The product has been booked!");
-}
+//function bookProduct(){
+//    var id = $(this).attr('id');
+//    var booking = $.getJSON("/product/" + id, function(data, status);
+//    product.set
+//    if (product) {
+//                return $.ajax({
+//                    type: 'POST',
+//                    url: '/api/story',
+//                    data: JSON.stringify(body),
+//                    success: function(data) {
+//                        localStorage.setItem('status', 'success');
+//                        location.reload();
+//
+//                    },
+//                    error: function(jqXHR, textStatus, errorThrown) {
+//                        showError(jqXHR.responseJSON.message, jqXHR.responseText);
+//                    },
+//                    contentType: "application/json",
+//                    dataType: 'json'
+//                });
+//            }
+//
+//
+//    alert("The product has been booked!");
+//}

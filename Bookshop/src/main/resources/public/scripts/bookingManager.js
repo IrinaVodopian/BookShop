@@ -5,7 +5,7 @@ $(document).ready(function() {
     }
     $.getJSON("/booking", function(data, status) {
         $.each(data, function(i, item) {
-       var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.product.productId + '">').append(
+       var $div = $('<div style="width: 18rem;" class="text-dark card card' + item.product.productId + '">').append(
                 $('<div class="card-body">'),
                 $('<h3 id="product-title">').text('Title: ' + item.product.productName),
                 $('<p id="date">').text('Date: ' + item.date),

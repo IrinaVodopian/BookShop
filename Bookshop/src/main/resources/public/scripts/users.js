@@ -29,10 +29,7 @@ $(document).ready(function() {
                     data: JSON.stringify(users),
                     success: function(data) {
                         $("#validation-success").fadeIn(3000).fadeOut(3000);
-                        $.each(stories, function(i, row) {
-                            var rowToDelete = $(".users-row-" + row.userId);
-                            rowToDelete.remove();
-                        });
+                        location.reload();
                     },
                     contentType: "application/json",
                     dataType: 'json'

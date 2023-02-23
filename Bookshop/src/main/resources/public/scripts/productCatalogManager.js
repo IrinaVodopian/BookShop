@@ -18,13 +18,13 @@ $(document).ready(function() {
     });
     });
 
-//500
+//405 CHECK
 function deleteProduct(object){
     var id = object.attr('id');
     console.log(id);
     $.ajax({
                         type: 'DELETE',
-                        url: '/product/' + id,
+                        url: '/product' + '?productId=' + id,
                         success: function(data) {
                             $("#validation-success").fadeIn(3000).fadeOut(3000);
                             $.each(stories, function(i, row) {

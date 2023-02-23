@@ -3,6 +3,8 @@ $(document).ready(function() {
        $("#validation-success").fadeIn(3000).fadeOut(3000);
         localStorage.setItem('status', '');
     };
+    localStorage.setItem('userLogin', 'login1');
+    console.log(localStorage.getItem('userLogin'));
     $.getJSON("/booking", function(data, status) {
         $.each(data, function(i, item) {
        var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.product.productId + '">').append(

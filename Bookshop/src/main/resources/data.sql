@@ -18,6 +18,8 @@ INSERT INTO STORE_ITEM (product_id, available_Qty, booked_Qty, sold_Qty) VALUES
 
 INSERT INTO BOOKING (product_id, user_id, delivery_address, date, time, status, quantity) VALUES
 	 (1, 1, 'Address1', '1989-09-29', '21:22:34', 'SUBMITTED', 5),
+	 (2, 1, 'Address2', '1990-09-29', '21:22:34', 'APPROVED', 2),
+	 (3, 1, 'Address3', '1991-09-29', '21:22:34', 'IN_DELIVERY', 1)
 	 (2, 2, 'Address2', '1990-09-29', '21:22:34', 'APPROVED', 2),
 	 (3, 3, 'Address3', '1991-09-29', '21:22:34', 'IN_DELIVERY', 1)
 	 ;
