@@ -25,7 +25,7 @@ $(document).ready(function() {
             var users = getSelectedUsers();
             $.ajax({
                     type: 'DELETE',
-                    url: '/user/deleteUsers',
+                    url: '/user',
                     data: JSON.stringify(users),
                     success: function(data) {
                         $("#validation-success").fadeIn(3000).fadeOut(3000);

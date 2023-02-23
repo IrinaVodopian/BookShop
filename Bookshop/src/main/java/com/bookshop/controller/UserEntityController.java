@@ -23,10 +23,10 @@ public class UserEntityController {
 		return userService.getUserById(userId);
 	}
 
-//	@GetMapping("/userName")
-//	UserEntity getUserByName(@RequestBody String userName) {
-//		return userService.getUserByName(userName);
-//	}
+	@GetMapping("/userName")
+	UserEntity getUserByName(@RequestBody String userName) {
+		return userService.getUserByName(userName);
+	}
 
 	@GetMapping("/userLogin/{login}")
 	UserEntity getUserByLogin(@PathVariable String login) {
@@ -62,8 +62,8 @@ public class UserEntityController {
 		userService.deleteUser(userId);
 	}
 
-	@DeleteMapping("/deleteUsers")
-	void deleteUsers(@RequestBody Long[] ids) {
+	@DeleteMapping
+	@Valid void deleteUsers(@Valid @RequestBody Long[] ids) {
 		userService.deleteAllById(Arrays.asList(ids));
 	}
 

@@ -39,9 +39,9 @@ public class UserService {
 		userRepository.deleteAllById(ids);
 	}
 
-//	public UserEntity getUserByName(String userName) {
-//		return userRepository.findByUserName(userName);
-//	}
+	public UserEntity getUserByName(String userName) {
+		return userRepository.findByUserName(userName);
+	}
 
 	public UserEntity getUserByLogin(String login) {
 		return userRepository.findByLogin(login);
