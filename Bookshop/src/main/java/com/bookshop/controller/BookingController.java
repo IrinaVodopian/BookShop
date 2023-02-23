@@ -1,7 +1,7 @@
 package com.bookshop.controller;
 
 import com.bookshop.model.Booking;
-import com.bookshop.model.BookingInfo;
+import com.bookshop.helpers.BookingInfo;
 import com.bookshop.model.enums.BookingStatus;
 import com.bookshop.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.bookshop.model.enums.BookingStatus.SUBMITTED;
 
 @RestController
 @RequestMapping("/booking")

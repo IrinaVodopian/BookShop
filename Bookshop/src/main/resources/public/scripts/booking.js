@@ -3,8 +3,6 @@ $(document).ready(function() {
        $("#validation-success").fadeIn(3000).fadeOut(3000);
         localStorage.setItem('status', '');
     };
-    //CHANGE CHECK MAYBE REPOSITORY METHOD OR QUERY
-    localStorage.setItem('userId', '1');
 
     $.getJSON("/booking/userId/" + localStorage.getItem('userId'), function(data, status) {
             $.each(data, function(i, item) {
@@ -23,6 +21,7 @@ $(document).ready(function() {
         });
         });
 
+//CHECK
 function cancelBooking(object){
     var id = object.attr('id');
     $.ajax({
@@ -30,13 +29,10 @@ function cancelBooking(object){
                         url: '/booking/' + id,
                         success: function(data) {
                             $("#validation-success").fadeIn(3000).fadeOut(3000);
-                            $.each(stories, function(i, row) {
-                                var rowToDelete = $(".users-row-" + row.userId);
-                                rowToDelete.remove();
-                            });
+                            alert("The booking has been deleted!");
+                            location.reload();
                         },
                         contentType: "application/json",
                         dataType: 'json'
                     });
-    alert("The booking has been deleted!");
 }

@@ -25,10 +25,11 @@ function sendValidateRequest(body){
                       var password = item.password;
                       if(password == body.password)
                       {
+                                      localStorage.setItem('userId', item.userId);
                                       alert("Logged in, you may proceed to the next page!");
                                       location.href = "../pages/catalogCustomer.html";
-//                                      document.querySelector("#name-placeholder").textContent = 'somethingNew';
-                                      localStorage.setItem('user', body.login);
+//                                      document.querySelector("#name-placeholder").textContent = item.userName;
+
                                   }
                       }
                       )

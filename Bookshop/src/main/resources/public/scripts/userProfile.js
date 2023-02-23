@@ -28,13 +28,11 @@ function sendRequest(body){
                     data: JSON.stringify(body),
                     success: function(data) {
                         localStorage.setItem('status', 'success');
-                        location.reload();
+                        alert("The user has been created! You can login now.");
+                        location.href = "../pages/login.html";
                     },
                     contentType: "application/json",
                     dataType: 'json'
                 });
 }
 
-function showAlert(){
-    alert("The user has been created!");
-}

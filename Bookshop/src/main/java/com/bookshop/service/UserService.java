@@ -1,6 +1,5 @@
 package com.bookshop.service;
 
-import com.bookshop.model.Credentials;
 import com.bookshop.model.UserEntity;
 import com.bookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.bookshop.model;
+package com.bookshop.helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

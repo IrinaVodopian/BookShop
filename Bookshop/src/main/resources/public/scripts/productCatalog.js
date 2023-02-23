@@ -18,10 +18,9 @@ $(document).ready(function() {
     });
     });
 
-//CHECK LOCAL STORAGE AND USERS RETURNS 500
+//CHECK LOCAL STORAGE AND USERS
 function bookProduct(object){
     var productId = object.attr('id');
-    localStorage.setItem('userId', '1');
     var body = {
                 userId: localStorage.getItem('userId'),
                 productId: productId,
@@ -44,25 +43,3 @@ function createBooking(body){
                     dataType: 'json'
                 });
 }
-
-//function getProduct(productId){
-//    return $.ajax({
-//                    type: 'GET',
-//                    url: '/product/' + productId,
-//                    dataType: "json",
-//                    success: function(data) {
-//                },
-//
-//                });
-//    }
-//
-//function getUser(){
-//    return $.ajax({
-//                    type: 'GET',
-//                    url: '/user/userId/' + localStorage.getItem('userId'),
-//                    dataType: "json",
-//                    success: function(data) {
-//
-//                }
-//                });
-//}

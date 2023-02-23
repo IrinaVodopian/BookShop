@@ -20,25 +20,18 @@ $(document).ready(function() {
 
 //405 CHECK
 function deleteProduct(object){
-    var id = object.attr('id');
-    console.log(id);
+    var productId = object.attr('id');
     $.ajax({
                         type: 'DELETE',
-                        url: '/product' + '?productId=' + id,
+                        url: '/product/' + productId,
                         success: function(data) {
                             $("#validation-success").fadeIn(3000).fadeOut(3000);
-                            $.each(stories, function(i, row) {
-                                var rowToDelete = $(".users-row-" + row.userId);
-                                rowToDelete.remove();
-                            });
+                            alert("The product has been deleted!");
                         },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                                            showError(jqXHR.responseJSON.message, jqXHR.responseText);
-                                        },
                         contentType: "application/json",
                         dataType: 'json'
                     });
-    alert("The product has been deleted!");
+
 }
 
 function saveProduct(){

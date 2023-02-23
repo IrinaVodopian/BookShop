@@ -1,6 +1,5 @@
 package com.bookshop.controller;
 
-import com.bookshop.model.Credentials;
 import com.bookshop.model.UserEntity;
 import com.bookshop.model.enums.Role;
 import com.bookshop.service.UserService;

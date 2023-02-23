@@ -1,7 +1,7 @@
 package com.bookshop.service;
 
 import com.bookshop.model.Booking;
-import com.bookshop.model.BookingInfo;
+import com.bookshop.helpers.BookingInfo;
 import com.bookshop.model.Product;
 import com.bookshop.model.UserEntity;
 import com.bookshop.model.enums.BookingStatus;
@@ -10,12 +10,9 @@ import com.bookshop.repository.ProductRepository;
 import com.bookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.bookshop.model.enums.BookingStatus.SUBMITTED;
 
 @Service
 public class BookingService {
@@ -35,12 +32,12 @@ public class BookingService {
 		return bookingRepository.save(booking);
 	}
 
-	public Booking editBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
+	public Booking editBooking(Booking booking, Long bookingId) {
 		bookingRepository.deleteById(bookingId);
 		return bookingRepository.save(booking);
 	}
 
-	public void cancelBooking(@PathVariable Long bookingId) {
+	public void cancelBooking(Long bookingId) {
 		bookingRepository.deleteById(bookingId);
 	}
 
