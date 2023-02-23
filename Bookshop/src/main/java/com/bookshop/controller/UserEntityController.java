@@ -62,8 +62,8 @@ public class UserEntityController {
 		userService.deleteUser(userId);
 	}
 
-	@DeleteMapping
-	@Valid void deleteUsers(@Valid @RequestBody Long[] ids) {
+	@DeleteMapping("/deleteUsers")
+	void deleteUsers(@RequestBody Long[] ids) {
 		userService.deleteAllById(Arrays.asList(ids));
 	}
 

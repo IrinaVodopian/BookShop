@@ -25,10 +25,11 @@ $(document).ready(function() {
             var users = getSelectedUsers();
             $.ajax({
                     type: 'DELETE',
-                    url: '/user',
+                    url: '/user/deleteUsers',
                     data: JSON.stringify(users),
                     success: function(data) {
                         $("#validation-success").fadeIn(3000).fadeOut(3000);
+                        alert("The user has been deleted!");
                         location.reload();
                     },
                     contentType: "application/json",
@@ -70,6 +71,13 @@ function getSelectedUsers() {
     return selected;
 }
 
-function showAlert(){
-    alert("The user has been deleted!");
+function editUser(){
+    var userId = getSelectedUsers();
+    localStorage.setItem('editUser', userId[0]);
+    location.href = "../pages/userProfile.html";
+}
+
+function createUser(){
+    localStorage.setItem('editUser', 'user id');
+    location.href = "../pages/userProfile.html";
 }

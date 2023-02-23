@@ -7,6 +7,9 @@ $(document).ready(function() {
             var body = validateForm();
             if (body) { sendRequest(body); }
         });
+    if (localStorage.getItem("editUser") != null) {
+      document.getElementById("staticUserId").value = localStorage.getItem("editUser");
+    }
     });
 
 function validateForm() {
