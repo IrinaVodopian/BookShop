@@ -21,6 +21,10 @@ function validateForm() {
             login: $("#inputLogin").val(),
             password: $("#inputPassword").val()
         };
+        if (body.userName == "" || body.email == "" || body.phone == "" || body.address == "" || body.login == "" || body.password == "") {
+                                alert('Please fill all fields', 'All fields must pe populated');
+                                return false;
+                            }
         return body;
 }
 

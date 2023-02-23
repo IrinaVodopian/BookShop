@@ -41,7 +41,6 @@ $(document).ready(function() {
                             });
                 });
 
-//CHECK 500 ERROR
     $('#delete-product').on('click', function() {
         var stores = getSelectedProducts();
         $.ajax({
@@ -68,55 +67,37 @@ function getSelectedProducts() {
             selected.push($this.find("#productId").text());
         }
     });
-    console.log(selected);
     return selected;
 }
 
 function saveItem(){
+    var productId = $("#inputProductIdModal").val();
     var body = validateForm();
-    if (body) { sendRequest(body);}
+    if (body) { sendRequest(productId, body);}
 }
 
-//CHECK IF EMPTY
 function validateForm() {
-//        if($("input:empty").length != 0){
-//                alert("fields can not be empty");
-//                return false;
-//                }
-        var productId = $("#inputProductIdModal").val();
-        var productModal = getProduct(productId);
         var body = {
             storeId: $("#inputStoreIdModal").val(),
-            product: productModal,
             availableQty: $("#inputAvailable").val(),
-            author: $("#inputBooked").val(),
-            price: $("#inputDelivered").val()
+            bookedQty: $("#inputBooked").val(),
+            soldQty: $("#inputDelivered").val()
         };
-        console.log(body);
+        if (body.storeId == "" || body.availableQty == "" || body.bookedQty == "" || body.soldQty == "") {
+                        alert('Please fill all fields', 'All fields must pe populated');
+                        return false;
+                    }
         return body;
 }
 
-function sendRequest(body){
+function sendRequest(productId, body){
     return $.ajax({
                     type: 'POST',
-                    url: '/storeItem',
+                    url: '/storeItem/' + productId,
                     data: JSON.stringify(body),
                     success: function(data) {
                         localStorage.setItem('status', 'success');
                         alert("The item has been saved!");
-//                        location.reload();
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
-                });
-}
-
-function getProduct(id){
-    return $.ajax({
-                    type: 'GET',
-                    url: '/product/' + id,
-                    success: function(data) {
-                        localStorage.setItem('status', 'success');
                         location.reload();
                     },
                     contentType: "application/json",

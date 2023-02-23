@@ -31,6 +31,11 @@ public class StoreItemController {
 		return storeItemService.saveStoreItem(storeItem);
 	}
 
+	@PostMapping("/{productId}")
+	public StoreItem saveStoreItemById(@PathVariable Long productId, @RequestBody StoreItem storeItem) {
+		return storeItemService.saveStoreItemById(productId, storeItem);
+	}
+
 	@PutMapping("/{storeItemId}")
 	public StoreItem editStoreItem(@RequestBody StoreItem storeItem, @PathVariable Long storeItemId) {
 		return storeItemService.editStoreItem(storeItem, storeItemId);
@@ -42,7 +47,7 @@ public class StoreItemController {
 	}
 
 	@DeleteMapping
-	@Valid void deleteStories(@Valid @RequestBody Long[] ids) {
+	@Valid void deleteStores(@Valid @RequestBody Long[] ids) {
 		storeItemService.deleteAllById(Arrays.asList(ids));
 	}
 }
