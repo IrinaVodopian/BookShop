@@ -3,7 +3,7 @@ $(document).ready(function() {
        $("#validation-success").fadeIn(3000).fadeOut(3000);
         localStorage.setItem('status', '');
     };
-    $("#create-user").click(function() {
+    $("#createUser").click(function() {
             var body = validateForm();
             if (body) { sendRequest(body); }
         });
@@ -22,7 +22,7 @@ function validateForm() {
             password: $("#inputPassword").val()
         };
         if (body.userName == "" || body.email == "" || body.phone == "" || body.address == "" || body.login == "" || body.password == "") {
-                                alert('Please fill all fields', 'All fields must pe populated');
+                                alert('Please fill all the fields');
                                 return false;
                             }
         return body;
