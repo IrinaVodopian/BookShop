@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     $.getJSON("/booking/userId/" + localStorage.getItem('userId'), function(data, status) {
             $.each(data, function(i, item) {
-           var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.product.productId + '">').append(
+           var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.bookingId + '">').append(
                     $('<div class="card-body">'),
                     $('<h3 id="product-title">').text('Title: ' + item.product.productName),
                     $('<p id="date">').text('Date: ' + item.date),
@@ -15,7 +15,7 @@ $(document).ready(function() {
                     $('<p id="status">').text('Status: ' + item.status),
                     $('<img class="card-img-bottom" src="marguerite.jpg" alt="Product image">'),
                     $('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">').text('Edit'),
-                    $('<button type="button" class="btn btn-danger" onclick="cancelBooking($(this))" id=' + item.product.productId + '>').text('Cancel')
+                    $('<button type="button" class="btn btn-danger" onclick="cancelBooking($(this))" id=' + item.bookingId + '>').text('Cancel')
                 ).appendTo('#bookingCard');
             });
         });
@@ -35,4 +35,29 @@ function cancelBooking(object){
                         contentType: "application/json",
                         dataType: 'json'
                     });
+}
+
+function validateForm() {
+        var body = {
+            date: $("#inputDate").val(),
+            time: $("#inputTime").val(),
+            address: $("#inputAddress").val()
+        };
+        return body;
+}
+
+//CHECK ID
+function sendRequest(body, id){
+    return $.ajax({
+                    type: 'PUT',
+                    url: '/booking/customer/' + 1,
+                    data: JSON.stringify(body),
+                    success: function(data) {
+                        localStorage.setItem('status', 'success');
+                        alert("The bookings details have been changed.");
+                        location.reload();
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
 }

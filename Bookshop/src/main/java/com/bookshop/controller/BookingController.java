@@ -1,7 +1,8 @@
 package com.bookshop.controller;
 
+import com.bookshop.helpers.BookingEditCustomer;
 import com.bookshop.model.Booking;
-import com.bookshop.helpers.BookingInfo;
+import com.bookshop.helpers.BookingPerCustomer;
 import com.bookshop.model.enums.BookingStatus;
 import com.bookshop.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,18 @@ public class BookingController {
 	}
 
 	@PostMapping("/createById")
-	Booking createBookingByIds(@RequestBody BookingInfo info) {
+	Booking createBookingByIds(@RequestBody BookingPerCustomer info) {
 		return bookingService.createBookingByIds(info);
 	}
 
 	@PutMapping("/{bookingId}")
 	Booking editBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
 		return bookingService.editBooking(booking, bookingId);
+	}
+
+	@PutMapping("/customer/{bookingId}")
+	Booking editBookingCustomer(@RequestBody BookingEditCustomer info, @PathVariable Long bookingId) {
+		return bookingService.editBookingCustomer(info, bookingId);
 	}
 
 	@PutMapping("/status/{bookingId}")

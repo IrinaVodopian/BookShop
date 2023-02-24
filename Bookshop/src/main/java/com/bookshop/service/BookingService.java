@@ -1,7 +1,8 @@
 package com.bookshop.service;
 
+import com.bookshop.helpers.BookingEditCustomer;
 import com.bookshop.model.Booking;
-import com.bookshop.helpers.BookingInfo;
+import com.bookshop.helpers.BookingPerCustomer;
 import com.bookshop.model.Product;
 import com.bookshop.model.UserEntity;
 import com.bookshop.model.enums.BookingStatus;
@@ -55,7 +56,7 @@ public class BookingService {
 		return bookingRepository.findByUserUserId(id);
 	}
 
-	public Booking createBookingByIds(BookingInfo info) {
+	public Booking createBookingByIds(BookingPerCustomer info) {
 		UserEntity user = userRepository.findById(info.getUserId()).get();
 		Product product = productRepository.findById(info.getProductId()).get();
 		Booking booking = Booking.builder()
@@ -65,6 +66,20 @@ public class BookingService {
 						.quantity(info.getQuantity())
 						.status(BookingStatus.SUBMITTED)
 						.build();
+		return bookingRepository.save(booking);
+	}
+
+	public Booking editBookingCustomer(BookingEditCustomer info, Long bookingId) {
+		Booking booking = bookingRepository.findById(bookingId).get();
+		if(info.getDate() != null){
+			booking.setDate(info.getDate());
+		}
+		if(info.getTime() != null){
+			booking.setTime(info.getTime());
+		}
+		if(info.getDeliveryAddress() != null){
+			booking.setDeliveryAddress(info.getDeliveryAddress());
+		}
 		return bookingRepository.save(booking);
 	}
 }

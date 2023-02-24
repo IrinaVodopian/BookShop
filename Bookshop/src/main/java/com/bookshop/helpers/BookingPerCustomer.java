@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 
-public class BookingInfo {
+public class BookingPerCustomer {
 	private Long userId;
 	private Long productId;
 	private int quantity;
