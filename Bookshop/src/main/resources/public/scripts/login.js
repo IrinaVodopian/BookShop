@@ -26,6 +26,7 @@ function sendValidateRequest(body){
                       if(password == body.password)
                       {
                                       localStorage.setItem('userId', item.userId);
+                                      localStorage.setItem('userRole', item.role);
                                       localStorage.setItem('userName', item.userName);
                                       alert("Logged in, you may proceed to the next page!");
                                       location.href = "../pages/catalogCustomer.html";
