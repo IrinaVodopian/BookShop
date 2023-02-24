@@ -1,18 +1,20 @@
 package com.bookshop.webTest;
 
+import com.bookshop.TestConfigurationBookApp;
 import com.bookshop.model.Product;
 import com.bookshop.model.StoreItem;
 import com.bookshop.repository.StoreItemRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -22,8 +24,8 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
-@SpringBootTest()
-@Transactional
+@SpringBootTest(classes = {TestConfigurationBookApp.class})
+@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 public class StoreItemWebTest {
 
@@ -44,7 +46,8 @@ public class StoreItemWebTest {
 		when(storeItemRepository.findById(1L)).thenReturn(Optional.ofNullable(storeItem));
 		mockMvc.perform(MockMvcRequestBuilders
 										.get("/storeItem/{storeItemId}", "1")
-										.contentType(MediaType.APPLICATION_JSON))
+										.contentType(MediaType.APPLICATION_JSON)
+										.characterEncoding("utf-8"))
 						.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
@@ -59,7 +62,8 @@ public class StoreItemWebTest {
 		mockMvc.perform(MockMvcRequestBuilders
 										.post(baseUri)
 										.contentType(MediaType.APPLICATION_JSON_VALUE)
-										.content(requestJson))
+										.content(requestJson)
+										.characterEncoding("utf-8"))
 						.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
@@ -69,7 +73,8 @@ public class StoreItemWebTest {
 		mockMvc.perform(MockMvcRequestBuilders
 										.delete("/storeItem/{storeItemId}", "1")
 										.contentType(MediaType.APPLICATION_JSON)
-										.accept(MediaType.APPLICATION_JSON))
+										.accept(MediaType.APPLICATION_JSON)
+										.characterEncoding("utf-8"))
 						.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 }

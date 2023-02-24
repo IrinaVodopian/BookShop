@@ -1,5 +1,6 @@
 package com.bookshop.serviceTest;
 
+import com.bookshop.TestConfigurationBookApp;
 import com.bookshop.model.enums.BookingStatus;
 import com.bookshop.model.enums.Role;
 import com.bookshop.model.Booking;
@@ -7,12 +8,14 @@ import com.bookshop.model.Product;
 import com.bookshop.model.UserEntity;
 import com.bookshop.repository.BookingRepository;
 import com.bookshop.service.BookingService;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 import static org.junit.Assert.assertNotNull;
@@ -21,8 +24,8 @@ import java.sql.Time;
 import java.util.Date;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestConfigurationBookApp.class})
+@ExtendWith(SpringExtension.class)
 public class BookingServiceTest {
 
 	@Autowired

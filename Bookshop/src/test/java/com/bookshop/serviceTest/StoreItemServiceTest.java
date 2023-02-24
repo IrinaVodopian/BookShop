@@ -1,16 +1,18 @@
 package com.bookshop.serviceTest;
 
+import com.bookshop.TestConfigurationBookApp;
 import com.bookshop.model.Product;
 import com.bookshop.model.StoreItem;
 import com.bookshop.repository.StoreItemRepository;
 import com.bookshop.service.StoreItemService;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
@@ -18,8 +20,8 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestConfigurationBookApp.class})
+@ExtendWith(SpringExtension.class)
 public class StoreItemServiceTest {
 
 	@Autowired
