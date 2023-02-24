@@ -1,4 +1,4 @@
-package com.bookshop.main.serviceTest;
+package com.bookshop.serviceTest;
 
 import com.bookshop.model.enums.Role;
 import com.bookshop.model.UserEntity;

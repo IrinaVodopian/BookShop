@@ -1,4 +1,4 @@
-package com.bookshop.main.serviceTest;
+package com.bookshop.serviceTest;
 
 import com.bookshop.model.Product;
 import com.bookshop.repository.ProductRepository;

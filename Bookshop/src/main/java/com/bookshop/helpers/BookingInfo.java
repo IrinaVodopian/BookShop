@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BookingEditCustomer {
+public class BookingInfo {
 	private Date date;
 	private Time time;
 	private String deliveryAddress;

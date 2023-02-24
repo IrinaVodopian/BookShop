@@ -1,6 +1,6 @@
 package com.bookshop.controller;
 
-import com.bookshop.helpers.BookingEditCustomer;
+import com.bookshop.helpers.BookingInfo;
 import com.bookshop.model.Booking;
 import com.bookshop.helpers.BookingPerCustomer;
 import com.bookshop.model.enums.BookingStatus;
@@ -29,19 +29,18 @@ public class BookingController {
 	}
 
 	@GetMapping("/userId/{userId}")
-	List<Booking> getBookingByUser(@PathVariable Long userId) {
-		return bookingService.getBookingByUser(userId);
+	List<Booking> getBookingPerUser(@PathVariable Long userId) {
+		return bookingService.getBookingPerUser(userId);
 	}
-
 
 	@PostMapping
 	Booking createBooking(@RequestBody Booking booking) {
 		return bookingService.createBooking(booking);
 	}
 
-	@PostMapping("/createById")
-	Booking createBookingByIds(@RequestBody BookingPerCustomer info) {
-		return bookingService.createBookingByIds(info);
+	@PostMapping("/bookProduct")
+	Booking bookProductCustomer(@RequestBody BookingPerCustomer info) {
+		return bookingService.bookProductCustomer(info);
 	}
 
 	@PutMapping("/{bookingId}")
@@ -50,7 +49,7 @@ public class BookingController {
 	}
 
 	@PutMapping("/customer/{bookingId}")
-	Booking editBookingCustomer(@RequestBody BookingEditCustomer info, @PathVariable Long bookingId) {
+	Booking editBookingCustomer(@RequestBody BookingInfo info, @PathVariable Long bookingId) {
 		return bookingService.editBookingCustomer(info, bookingId);
 	}
 

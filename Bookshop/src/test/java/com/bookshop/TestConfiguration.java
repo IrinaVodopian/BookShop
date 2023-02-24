@@ -1,4 +1,4 @@
-package com.bookshop.main;
+package com.bookshop;
 
 import com.bookshop.controller.BookingController;
 import com.bookshop.controller.ProductController;

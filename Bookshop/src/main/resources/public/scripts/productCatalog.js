@@ -5,7 +5,7 @@ $(document).ready(function() {
     };
     $.getJSON("/product", function(data, status) {
         $.each(data, function(i, item) {
-       var $div = $('<div style="width: 18rem;" class="text-dark card ' + item.productId + '">').append(
+       var $div = $('<div style="width: 18rem;" class="text-dark card-columns card ' + item.productId + '">').append(
                 $('<div class="card-body">'),
                 $('<h3 id="product-title">').text('Title: ' + item.productName),
                 $('<p id="description">').text('Description: ' + item.description),
@@ -18,7 +18,6 @@ $(document).ready(function() {
     });
     });
 
-//CHECK LOCAL STORAGE AND USERS
 function bookProduct(object){
     var productId = object.attr('id');
     var body = {
@@ -32,7 +31,7 @@ function bookProduct(object){
 function createBooking(body){
     return $.ajax({
                     type: 'POST',
-                    url: '/booking/createById',
+                    url: '/booking/bookProduct',
                     data: JSON.stringify(body),
                     success: function(data) {
                         alert('Booking has been created!');

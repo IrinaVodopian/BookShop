@@ -49,12 +49,12 @@ $(document).ready(function() {
                 data: JSON.stringify(stores),
                 success: function(data) {
                     $("#validation-success").fadeIn(3000).fadeOut(3000);
-                     location.reload();
                 },
                 contentType: "application/json",
                 dataType: 'json'
             });
             alert("The items were deleted.");
+            location.reload();
     });
 });
 

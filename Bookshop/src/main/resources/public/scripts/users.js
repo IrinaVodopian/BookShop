@@ -21,7 +21,6 @@ $(document).ready(function() {
         });
     });
 
-//CHECK WORKS IN 2.9
     $('#delete-user').on('click', function() {
             var users = getSelectedUsers();
             $.ajax({
@@ -31,11 +30,11 @@ $(document).ready(function() {
                     success: function(data) {
                         $("#validation-success").fadeIn(3000).fadeOut(3000);
                         alert("The user has been deleted!");
-                        location.reload();
                     },
                     contentType: "application/json",
                     dataType: 'json'
                 });
+                location.reload();
         });
 
         $('#search-user').on('click', function() {

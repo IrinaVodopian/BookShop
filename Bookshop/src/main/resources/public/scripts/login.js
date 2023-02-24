@@ -3,6 +3,14 @@ function login(){
             sendValidateRequest(body);
             }
 
+function logOut(){
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userRole');
+            localStorage.setItem('userName', 'Anonymous user');
+            alert("Logged out");
+            location.reload();
+            }
+
 function validateForm() {
         var body = {
             login: $("#login").val(),
@@ -15,7 +23,6 @@ function validateForm() {
         return body;
 }
 
-//CHECK ALERT USERS NAME stays only before loading
 function sendValidateRequest(body){
     return $.ajax({
                     type: 'GET',
