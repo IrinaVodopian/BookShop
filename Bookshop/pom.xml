@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
 <!--        <start-class>com.bookshop.Application</start-class>-->
-        <java.version>19</java.version>
+        <java.version>19.0.1</java.version>
     </properties>
     <dependencies>
         <dependency>
