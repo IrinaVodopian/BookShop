@@ -17,10 +17,10 @@ paths:
         - customer
         - manager
       description: |
-        Get a list of abailable books for booking
+        Get a list of available books for booking
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -41,7 +41,7 @@ paths:
               $ref: '#/components/schemas/Product'
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -66,7 +66,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
     delete:
@@ -79,7 +79,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
   /storeItem:
@@ -90,7 +90,7 @@ paths:
         Get a storeItem
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -111,7 +111,7 @@ paths:
               $ref: '#/components/schemas/StoreItem'
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -135,7 +135,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
     delete:
@@ -147,7 +147,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
   /booking:
@@ -164,7 +164,7 @@ paths:
               $ref: '#/components/schemas/Booking'
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -190,7 +190,7 @@ paths:
               $ref: '#/components/schemas/Booking'
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
     get:
@@ -205,7 +205,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -226,7 +226,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
   /user:
@@ -243,7 +243,7 @@ paths:
               $ref: '#/components/schemas/UserEntity'
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -264,7 +264,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -284,7 +284,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
           content:
             application/json:
               schema:
@@ -303,7 +303,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         '200':
-          description: request has succseed
+          description: request has succeed
         '400':
           description: bad input parameter
 
