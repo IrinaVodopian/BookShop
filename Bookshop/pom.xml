@@ -15,7 +15,9 @@
     <description>Demo project for Spring Boot</description>
     <properties>
 <!--        <start-class>com.bookshop.Application</start-class>-->
-        <java.version>11</java.version>
+        <java.version>19</java.version>
+        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
     </properties>
     <dependencies>
         <dependency>
