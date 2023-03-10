@@ -24,7 +24,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestConfigurationBookApp.class})
+@SpringBootTest(classes = {TestConfigurationBookApp.class})
 @ExtendWith(SpringExtension.class)
 public class BookingServiceTest {
 

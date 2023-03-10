@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestConfigurationBookApp.class})
+@SpringBootTest(classes = {TestConfigurationBookApp.class})
 @ExtendWith(SpringExtension.class)
 public class StoreItemServiceTest {
 
