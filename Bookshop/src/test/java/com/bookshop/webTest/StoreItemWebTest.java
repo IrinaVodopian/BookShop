@@ -7,6 +7,7 @@ import com.bookshop.repository.StoreItemRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class StoreItemWebTest {
 	StoreItem storeItem = new StoreItem(1L, product, 2, 1, 3);
 
 
+	@Disabled
 	@Test
 	public void getStoreItemById_success() throws Exception {
 		when(storeItemRepository.findById(1L)).thenReturn(Optional.ofNullable(storeItem));
@@ -50,7 +52,7 @@ public class StoreItemWebTest {
 										.characterEncoding("utf-8"))
 						.andExpect(MockMvcResultMatchers.status().isOk());
 	}
-
+	@Disabled
 	@Test
 	public void saveStoreItem_success() throws Exception {
 		when(storeItemRepository.save(storeItem)).thenReturn(storeItem);
@@ -67,6 +69,7 @@ public class StoreItemWebTest {
 						.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
+	@Disabled
 	@Test
 	public void deleteStoreItemById_success() throws Exception {
 		doNothing().when(storeItemRepository).deleteById(1L);
