@@ -1,58 +1,41 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
+name: Build project
 on: [push]
-
 jobs:
   build:
-
+    name: Build and analyze code
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 19
-      uses: actions/setup-java@v3
-      with:
-        java-version: '19'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package -DskipTests --file Bookshop/pom.xml
-      working-directory: /home/runner/work/Bookshop/Bookshop/
-    - name: run Unit tests
-      working-directory: Bookshop/src/test/java/com/bookshop/serviceTest
-      run: mvn test
-      continue-on-error: true
-    - name: StyleCI CLI for JS and CSS code
-      uses: ghostwriter/styleci-action@latest
-      with:
-        styleci_api_key: 7c4jAqmlbEFJOqfLbP3SDeah8yONR2g9b9nd9tjk
-        # set the command options for your StyleCI CLI.
-        options: --no-interaction
-        # specify the directory to analyze.
-        directory: Bookshop/src/main/resources/public/
-      continue-on-error: true
-    - name: Google Java Format
-      uses: axel-op/googlejavaformat-action@v3.6.0
-      with:
-        args: --replace
-        files: .java
-      continue-on-error: true
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.2.2
-      with:
-        # The GitHub authentication token
-        token: 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
-        # Filepath to json-summary file
-        path: summary.json
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: 19
+          distribution: 'zulu' # Alternative distribution options are available.
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B package -DskipTests verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=IrinaVodopian_Bookshop
+      - name: Run Unit tests and generate coverage report
+        run: |
+          mvn clean test -pl Bookshop -Dtest=com.bookshop.serviceTest.* -DfailIfNoTests=false
+          mvn jacoco:report
+        working-directory: ./my-project
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./my-project/target/site/jacoco/jacoco.xml
