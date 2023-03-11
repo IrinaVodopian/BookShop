@@ -32,9 +32,8 @@ jobs:
         run: mvn -B package -DskipTests --file Bookshop/pom.xml verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=IrinaVodopian_Bookshop
       - name: Run Unit tests and generate coverage report
         run: |
-          mvn clean test -f Bookshop/pom.xml -Dtest=com.bookshop.serviceTest.* -DfailIfNoTests=false
-          mvn jacoco:report -f Bookshop/pom.xml
-        working-directory: ./Bookshop
+          mvn clean test -pl Bookshop -Dtest=com.bookshop.serviceTest.* -DfailIfNoTests=false
+          mvn jacoco:report
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
         with:
