@@ -39,4 +39,4 @@ jobs:
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ./Booskshop/target/site/jacoco/jacoco.xml
+          file: ./Booskshop/jacoco-report/jacoco.xml
