@@ -1,7 +1,7 @@
 package com.bookshop.e2eTest;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bookshop.pages.LoginPage;
+import com.bookshop.pages.UserProfilePage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,20 +11,19 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
-class LoginPageTest {
+class UserProfilePageIT {
 
 	WebDriver driver;
 	JavascriptExecutor ex;
-
-	LoginPage loginPage = new LoginPage();
+	UserProfilePage userProfilePage = new UserProfilePage();
 
 	@BeforeAll
 	static void setupClass() {
@@ -34,7 +33,7 @@ class LoginPageTest {
 	@BeforeEach
 	void setupTest() {
 		driver = new ChromeDriver();
-		PageFactory.initElements(driver, loginPage);
+		PageFactory.initElements(driver, userProfilePage);
 		ex=(JavascriptExecutor)driver;
 	}
 
@@ -44,22 +43,19 @@ class LoginPageTest {
 	}
 
 	@Test
-	void loginPositive() {
-		driver.get("http://localhost:8080/pages/login.html");
-		loginPage.login("login1","password1");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginPage.loginButton);
-		ex.executeScript("arguments[0].click()", loginPage.loginButton);
-		Alert alert = driver.switchTo().alert();
-		String text = alert.getText();
-		assertThat(text).contains("Logged in");
+	void textIsPresent() {
+		driver.get("http://localhost:8080/pages/userProfile.html");
+		String title = userProfilePage.title.getText();
+		String staticId = userProfilePage.staticUserId.getAttribute("value");
+		assertThat(title).isEqualTo("USER PROFILE");
+		assertThat(staticId).isEqualTo("user id");
 	}
 
 	@Test
-	void assertAlertLoginEmpty() {
-		driver.get("http://localhost:8080/pages/login.html");
-		loginPage.login("login1","");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginPage.loginButton);
-		ex.executeScript("arguments[0].click()", loginPage.loginButton);
+	void assertAlertFormIsEmpty() {
+		driver.get("http://localhost:8080/pages/userProfile.html");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", userProfilePage.saveButton);
+		ex.executeScript("arguments[0].click()", userProfilePage.saveButton);
 		Alert alert = driver.switchTo().alert();
 		String text = alert.getText();
 		assertThat(text).contains("Please fill all the fields");
