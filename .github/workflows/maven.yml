@@ -30,11 +30,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn clean install -B package -DskipTests --file Bookshop/pom.xml verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=IrinaVodopian_Bookshop
-      - name: Run Unit tests and generate coverage report
+      - name: Run Unit tests
         run: |
           mvn -f Bookshop/pom.xml clean test -Dtest=com.bookshop.serviceTest.* -DfailIfNoTests=false
-          mvn jacoco:report
+      - name: Generate coverage report
+        run: mvn jacoco:report
+        working-directory: Bookshop/
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ./Booskshop/target/site/jacoco/jacoco.xml
+          file: ./Booskshop/jacoco-report/jacoco.xml

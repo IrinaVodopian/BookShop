@@ -1,0 +1,56 @@
+name: Quality Gates
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build and analyze code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 19
+        uses: actions/setup-java@v1
+        with:
+          java-version: 19
+          distribution: 'zulu'
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn clean install -B package -DskipTests --file Bookshop/pom.xml verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=IrinaVodopian_Bookshop
+      - name: Run Unit tests /Run Web API Tests
+        if: always()
+        run: mvn -f Bookshop/pom.xml clean test -Dtest=com.bookshop.serviceTest.* -Dtest=com.bookshop.webTest.* -DfailIfNoTests=false
+      - name: Generate coverage report
+        if: always()
+        run: mvn jacoco:report
+        working-directory: Bookshop/
+      - name: Check SonarCloud Quality Gate
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          fail_on: 'failed'
+      - name: Check JaCoCo Coverage
+        uses: enflo/cobertura-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: './Bookshop/target/site/cobertura/index.html'
+          min-coverage: 80
