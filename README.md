@@ -2,6 +2,7 @@
 Study project
 A part of Epam program focused on gaining "SET" skills.
 Implemented with java + spring boot + h2 + jpa(jakarta)
+CICD covered by GitHub Actions. .yaml files can be found in /workflows
 
 Audience: Test automation engeneers A2/A3.
 Goal: Web application development
