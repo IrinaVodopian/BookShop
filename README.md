@@ -1,6 +1,11 @@
 # Bookshop
 Study project
-Implemented with java + spring boot + h2 + jpa
+A part of Epam program focused on gaining "SET" skills.
+Implemented with java + spring boot + h2 + jpa(jakarta)
+
+Audience: Test automation engeneers A2/A3.
+Goal: Web application development
+PS: main focus on Web development, not on creating TAF.
 
 Api documentation is available in main-resources-bookShopApi.yaml
 or
